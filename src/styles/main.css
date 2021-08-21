@@ -24,3 +24,27 @@ ul {
   margin: 0;
   list-style: none;
 } */
+
+body {
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--background-main);
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    background-image: url('../images/ellipse_1.svg'),
+      url('../images/ellipse_2_small.svg');
+    background-position: left bottom, right top;
+    background-repeat: no-repeat;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  body {
+    background-image: url('../images/ellipse_1.svg'),
+      url('../images/ellipse_2.svg');
+    background-position: left bottom, right top;
+    background-repeat: no-repeat;
+  }
+}
