@@ -33,7 +33,7 @@ const App = () => {
                 path={path}
                 redirectTo={redirectTo}
                 exact={exact}
-                restricted={redirectTo}
+                restricted={restricted}
                 component={component}
               ></PrivateRoute>
             ),
