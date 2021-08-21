@@ -1,14 +1,15 @@
-// import styles from "./LoginView.module.css"
+import styles from './LoginView.module.css';
+import LoginForm from '../../components/LoginForm/LoginForm';
 
 function LoginView() {
   return (
     <div>
-      LoginView
+      <LoginForm />
     </div>
-  )
+  );
 }
 
-export default LoginView
+export default LoginView;
 
 /*
 import { useState } from 'react';
