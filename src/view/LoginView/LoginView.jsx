@@ -1,3 +1,14 @@
+// import styles from "./LoginView.module.css"
+function LoginView() {
+  return (
+    <div>
+      LoginView
+    </div>
+  )
+}
+
+export default LoginView
+
 /*
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
