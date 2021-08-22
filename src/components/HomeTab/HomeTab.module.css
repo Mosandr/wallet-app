@@ -1,15 +1,15 @@
 .tableWrapper {
   padding-top: 46px;
   padding-left: 30px;
+  max-height: 60vh;
 }
 table {
   border-collapse: collapse;
 }
-th {
-  height: 60px;
-  padding: 5px;
-}
+
 .tableHeader {
+  height: 60px;
+
   font-style: 400;
   font-weight: 700;
   font-size: 18px;
@@ -27,8 +27,31 @@ table th:last-child {
 }
 td {
   height: 60px;
-  padding: 5px;
+  padding: 15px;
 }
+td:nth-child(1) {
+  width: 100px;
+  text-align: center;
+}
+td:nth-child(2) {
+  width: 100px;
+  text-align: center;
+}
+td:nth-child(3) {
+  width: 100px;
+}
+td:nth-child(4) {
+  width: 135px;
+}
+td:nth-child(5) {
+  width: 100px;
+  text-align: right;
+}
+td:nth-child(6) {
+  width: 100px;
+  text-align: right;
+}
+
 tr {
   font-style: 400;
   font-weight: 400;
@@ -43,6 +66,7 @@ thead {
   color: #000;
 }
 th {
+  padding: 15px;
   background: #fff;
   border-color: transparent;
 }

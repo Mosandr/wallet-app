@@ -59,9 +59,9 @@ function HomeTab() {
                   <td>{category}</td>
                   <td>{comment}</td>
                   <td style={{ color: type === '+' ? '#24CCA7' : '#FF6596' }}>
-                    {sum}
+                    {sum.toFixed(2)}
                   </td>
-                  <td>{monthlyBalance}</td>
+                  <td>{monthlyBalance.toFixed(2)}</td>
                 </tr>
               ),
             )}
