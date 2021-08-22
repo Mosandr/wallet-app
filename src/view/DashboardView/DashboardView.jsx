@@ -6,7 +6,7 @@ import Navigation from '../../components/Navigation/Navigation';
 import Currency from '../../components/Currency/Currency';
 import Balance from '../../components/Balance/Balance';
 import HomeTab from '../../components/HomeTab/HomeTab';
-import Statistics from '../../components/Statistics/Statistics';
+import DiagramTab from '../../components/DiagramTab/DiagramTab';
 
 function DashboardView() {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
@@ -25,7 +25,7 @@ function DashboardView() {
           </aside>
           <Switch>
             <Route path="/" exact component={HomeTab} />
-            <Route path="/stat" exact component={Statistics} />
+            <Route path="/stat" exact component={DiagramTab} />
             <Redirect to="/" />
           </Switch>
         </>
@@ -35,7 +35,7 @@ function DashboardView() {
           <Navigation />
           <Switch>
             <Route path="/" exact component={HomeTab} />
-            <Route path="/stat" exact component={Statistics} />
+            <Route path="/stat" exact component={DiagramTab} />
             <Route path="/currency" exact component={Currency} />
           </Switch>
         </>
