@@ -23,12 +23,12 @@ function LoginForm() {
   const fieldsSettings = [
     {
       fieldName: 'email',
-      palceholder: 'E-mail',
+      placeholder: 'E-mail',
       iconType: 'email',
     },
     {
       fieldName: 'password',
-      palceholder: 'Пароль',
+      placeholder: 'Пароль',
       iconType: 'lock',
     },
   ];

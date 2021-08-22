@@ -1,4 +1,4 @@
-.loginFormContainer {
+.authRegFormContainer {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -20,10 +20,11 @@
 }
 
 @media screen and (min-width: 768px) {
-  .loginFormContainer {
+  .authRegFormContainer {
     position: static;
     width: 540px;
-    height: 468px;
+    padding-top: 40px;
+    padding-bottom: 60px;
     border-radius: 20px;
   }
 } ;
