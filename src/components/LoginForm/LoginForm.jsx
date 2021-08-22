@@ -1,52 +1,50 @@
-import { Formik, Form } from 'formik';
 import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import AuthRegisterForm from '../AuthRegisterForm/AuthRegisterForm';
+import authOps from '../../redux/auth/authOperations';
 import * as Yup from 'yup';
-import AuthInput from '../AuthInput/AuthInput';
-import ButtonsBlock from '../ButtonsBlock/ButtonsBlock';
-import styles from './LoginForm.module.css';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
     .matches(/\w+[@]\w+\.\w+/)
     .required(),
   password: Yup.string()
-    .matches(/^\d{6,12}$/)
+    .matches(/^.{6,12}$/)
     .required(),
 });
 
 function LoginForm() {
+  const buttonsSettings = {
+    btn_1_text: 'Вход',
+    btn_1_type: 'submit',
+    btn_2_child: <NavLink to="/register">Регистрация</NavLink>,
+  };
+
+  const fieldsSettings = [
+    {
+      fieldName: 'email',
+      placeholder: 'E-mail',
+      iconType: 'email',
+    },
+    {
+      fieldName: 'password',
+      placeholder: 'Пароль',
+      iconType: 'lock',
+    },
+  ];
+  const dispatch = useDispatch();
+  const onLoginSubmit = values => {
+    const { email, password } = values;
+    dispatch(authOps.logIn({ email, password }));
+  };
+
   return (
-    <div className={styles.loginFormContainer}>
-      <div className={styles.logo}></div>
-      <Formik
-        initialValues={{
-          email: '',
-          password: '',
-        }}
-        onSubmit={values => console.log(values)}
-        validationSchema={validationSchema}
-      >
-        <Form>
-          <AuthInput
-            name="email"
-            type="text"
-            placeholder="E-mail"
-            iconType="email"
-          />
-          <AuthInput
-            name="password"
-            type="text"
-            placeholder="Пароль"
-            iconType="lock"
-          />
-          <ButtonsBlock
-            btn_1_text="Вход"
-            btn_1_type="submit"
-            btn_2_child={<NavLink to="/register">Регистрация</NavLink>}
-          />
-        </Form>
-      </Formik>
-    </div>
+    <AuthRegisterForm
+      validationSchema={validationSchema}
+      onSubmit={onLoginSubmit}
+      buttonsSettings={buttonsSettings}
+      fieldsSettings={fieldsSettings}
+    />
   );
 }
 

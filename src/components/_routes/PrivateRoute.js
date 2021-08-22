@@ -9,7 +9,7 @@ export default function PrivateRoute({
   ...routeProps
 }) {
   // const isAuthenticated = useSelector(authSelectors.getIsAuthenticated);
-  const isAuthenticated = true;
+  const isAuthenticated = false;
 
   return (
     <Route

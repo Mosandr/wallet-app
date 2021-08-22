@@ -1,8 +1,8 @@
-/*
-import axios from 'axios';
-import authActions from './auth-actions';
 
-axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
+import axios from 'axios';
+import authActions from './authActions';
+
+axios.defaults.baseURL = 'http://localhost:3001';
 
 const token = {
   set(token) {
@@ -27,11 +27,10 @@ const register = credentials => async dispatch => {
 };
 
 const logIn = credentials => async dispatch => {
+  console.log('login');
   dispatch(authActions.loginRequest());
-
   try {
-    const response = await axios.post('/users/login', credentials);
-
+    const response = await axios.post('api/users/login', credentials);
     token.set(response.data.token);
     dispatch(authActions.loginSuccess(response.data));
   } catch (error) {
@@ -73,4 +72,4 @@ const getCurrentUser = () => async (dispatch, getState) => {
 };
 
 export default { register, logIn, logOut, getCurrentUser };
-*/
+
