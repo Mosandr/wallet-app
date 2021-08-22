@@ -1,4 +1,4 @@
-// import styles from "./DashboardView.module.css"
+import styles from './DashboardView.module.css';
 import { Route, Switch, Redirect } from 'react-router';
 import { useMediaQuery } from 'react-responsive';
 import Header from '../../components/Header/Header';
@@ -17,18 +17,20 @@ function DashboardView() {
     <>
       <Header />
       {isTabletOrDesktop && (
-        <>
+        <div className={styles.dashboardWrapper}>
           <aside>
             <Navigation />
             <Balance />
             <Currency />
           </aside>
-          <Switch>
-            <Route path="/" exact component={HomeTab} />
-            <Route path="/stat" exact component={DiagramTab} />
-            <Redirect to="/" />
-          </Switch>
-        </>
+          <div className={styles.hometabWrapper}>
+            <Switch>
+              <Route path="/" exact component={HomeTab} />
+              <Route path="/stat" exact component={DiagramTab} />
+              <Redirect to="/" />
+            </Switch>
+          </div>
+        </div>
       )}
       {isMobile && (
         <>

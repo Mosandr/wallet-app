@@ -1,0 +1,48 @@
+.tableWrapper {
+  padding-top: 46px;
+  padding-left: 30px;
+}
+table {
+  border-collapse: collapse;
+}
+th {
+  height: 60px;
+  padding: 5px;
+}
+.tableHeader {
+  font-style: 400;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.5;
+  border: none;
+  box-shadow: none;
+}
+
+table th:first-child {
+  border-radius: 30px 0 0 30px;
+}
+
+table th:last-child {
+  border-radius: 0 30px 30px 0;
+}
+td {
+  height: 60px;
+  padding: 5px;
+}
+tr {
+  font-style: 400;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  border-bottom: 1px solid #dcdcdf;
+  box-shadow: 0px 2px 0px rgba(255, 255, 255, 0.6);
+}
+thead {
+  background: #fff;
+  border: none;
+  color: #000;
+}
+th {
+  background: #fff;
+  border-color: transparent;
+}
