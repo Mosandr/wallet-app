@@ -7,6 +7,7 @@ function HomeTab() {
   // const isTabletOrDesktop = useMediaQuery({
   //   query: '(min-width: 768px)',
   // });
+  
   return (
     <>
       {isMobile && <Balance />}
