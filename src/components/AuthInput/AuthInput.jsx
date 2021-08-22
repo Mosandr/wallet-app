@@ -1,7 +1,7 @@
 import { Field } from 'formik';
 import styles from './AuthInput.module.css';
 
-const AuthInput = ({ name, iconType, onValueChange, type, placeholder }) => {
+const AuthInput = ({ name, iconType, placeholder }) => {
   const wrapperClassName = styles.authInputFieldWrap + ' ' + styles[iconType];
   return (
     <div className={wrapperClassName}>

@@ -54,7 +54,6 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { contactsReducer } from './contacts';
-import { authReducer } from './auth';
 
 const myMiddleware = store => next => action => {
   next(action);
