@@ -9,7 +9,6 @@
   justify-content: center;
   align-items: center;
   background-color: var(--text-background-white);
-  padding: auto 20px;
 }
 
 .logo {
@@ -19,3 +18,12 @@
   background-image: url('../../images/logo_small.svg');
   background-size: cover;
 }
+
+@media screen and (min-width: 768px) {
+  .loginFormContainer {
+    position: static;
+    width: 540px;
+    height: 468px;
+    border-radius: 20px;
+  }
+} ;

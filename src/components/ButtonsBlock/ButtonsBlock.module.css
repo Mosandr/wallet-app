@@ -12,6 +12,7 @@
   text-transform: uppercase;
   border: 1px solid;
   border-radius: 20px;
+  cursor: pointer;
 }
 
 .ok {
