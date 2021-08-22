@@ -15,6 +15,11 @@
   cursor: pointer;
 }
 
+.formButton a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .ok {
   color: var(--text-background-white);
   background-color: var(--accent-color-ok);
