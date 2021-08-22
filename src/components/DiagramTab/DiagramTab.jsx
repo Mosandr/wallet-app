@@ -1,11 +1,14 @@
 // import styles from './DiagramTab.module.css'
+import Table from '../Table/Table';
+import Chart from '../Chart/Chart';
 
 function DiagramTab() {
   return (
     <div>
-      DiagramTab
+      <Chart />
+      <Table />
     </div>
-  )
+  );
 }
 
-export default DiagramTab
+export default DiagramTab;
