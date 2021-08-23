@@ -12,11 +12,40 @@
   --breakpoint-desktop: 1280px;
   --breakpoint-tablet: 768px;
   --breakpoint-mobile: 320px;
+   --main-font: "Roboto", sans-serif;
+  --secondary-font: "Poppins", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
 }
 
 body {
   height: 100vh;
   background-color: var(--background-main);
+  font-family: var(--main-font);
+  font-style: normal;
+  line-height: 1.5;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+image {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 @media screen and (min-width: 768px) {
