@@ -1,11 +1,16 @@
 .dashboardWrapper {
-  padding-top: 20px;
-}
-.hometabWrapper {
-  border-left: 1px solid #e7e5f2;
+  padding-top: 10px;
 }
 @media screen and (min-width: 768px) {
   .dashboardWrapper {
+    padding-top: 20px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .dashboardWrapper {
     display: flex;
+  }
+  .hometabWrapper {
+    border-left: 1px solid #e7e5f2;
   }
 }

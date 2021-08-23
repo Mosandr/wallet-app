@@ -7,6 +7,7 @@ import Currency from '../../components/Currency/Currency';
 import Balance from '../../components/Balance/Balance';
 import HomeTab from '../../components/HomeTab/HomeTab';
 import DiagramTab from '../../components/DiagramTab/DiagramTab';
+import Container from '../../components/Container/Container';
 
 function DashboardView() {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
@@ -17,20 +18,22 @@ function DashboardView() {
     <>
       <Header />
       {isTabletOrDesktop && (
-        <div className={styles.dashboardWrapper}>
-          <aside>
-            <Navigation />
-            <Balance />
-            <Currency />
-          </aside>
-          <div className={styles.hometabWrapper}>
-            <Switch>
-              <Route path="/" exact component={HomeTab} />
-              <Route path="/stat" exact component={DiagramTab} />
-              <Redirect to="/" />
-            </Switch>
+        <Container>
+          <div className={styles.dashboardWrapper}>
+            <aside>
+              <Navigation />
+              <Balance />
+              <Currency />
+            </aside>
+            <div className={styles.hometabWrapper}>
+              <Switch>
+                <Route path="/" exact component={HomeTab} />
+                <Route path="/stat" exact component={DiagramTab} />
+                <Redirect to="/" />
+              </Switch>
+            </div>
           </div>
-        </div>
+        </Container>
       )}
       {isMobile && (
         <>
