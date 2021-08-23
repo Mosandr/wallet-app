@@ -41,6 +41,7 @@ function RegistrationForm() {
       placeholder: 'Подтвердите пароль',
       type: 'password',
       iconType: 'lock',
+      progressBar: true,
     },
     {
       fieldName: 'userName',

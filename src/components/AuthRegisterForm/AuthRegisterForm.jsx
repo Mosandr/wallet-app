@@ -1,6 +1,7 @@
 import { Formik, Form } from 'formik';
 import AuthInput from '../AuthInput/AuthInput';
 import ButtonsBlock from '../ButtonsBlock/ButtonsBlock';
+import ProgressBar from '../AuthInput/ProgressBar/ProgressBar';
 import styles from './AuthRegisterForm.module.css';
 
 function AuthRegisterForm({
@@ -9,7 +10,6 @@ function AuthRegisterForm({
   buttonsSettings,
   fieldsSettings,
 }) {
-  console.log(fieldsSettings);
   return (
     <div className={styles.authRegFormContainer}>
       <div className={styles.logo}></div>
@@ -24,18 +24,31 @@ function AuthRegisterForm({
         validationSchema={validationSchema}
       >
         <Form>
-          {fieldsSettings.map(({ fieldName, placeholder, iconType, type }) => {
-            console.log({ fieldName, placeholder, iconType, type });
-            return (
-              <AuthInput
-                key={fieldName}
-                name={fieldName}
-                type={type}
-                placeholder={placeholder}
-                iconType={iconType}
-              />
-            );
-          })}
+          <div className={styles.inputsWrapper}>
+            {' '}
+            {fieldsSettings.map(
+              ({ fieldName, placeholder, iconType, type, progressBar }) => {
+                console.log({
+                  fieldName,
+                  placeholder,
+                  iconType,
+                  type,
+                  progressBar,
+                });
+                return (
+                  <AuthInput
+                    key={fieldName}
+                    name={fieldName}
+                    type={type}
+                    placeholder={placeholder}
+                    iconType={iconType}
+                    progressBar={progressBar}
+                  />
+                );
+              },
+            )}
+          </div>
+
           <ButtonsBlock
             btn_1_text={buttonsSettings.btn_1_text}
             btn_1_type={buttonsSettings.btn_1_type}

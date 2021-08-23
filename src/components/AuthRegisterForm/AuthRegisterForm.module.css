@@ -19,6 +19,10 @@
   background-size: cover;
 }
 
+.inputsWrapper {
+  margin-bottom: 20px;
+}
+
 @media screen and (min-width: 768px) {
   .authRegFormContainer {
     position: static;
