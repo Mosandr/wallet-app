@@ -20,7 +20,6 @@ const { reducer, actions } = createSlice({
   initialState,
   reducers: {
     onLoginRequest: (state) => {
-      console.log('LoginRequest')
       state.error = '';
       state.isLoading = true;
     },
@@ -31,7 +30,6 @@ const { reducer, actions } = createSlice({
       state.isAuthenticated = true;
       state.isLoading = false;
       state.error = '';
-      console.log('Login success')
     },
     onLoginError: (state, { payload }) => {
       state.token = null;
@@ -43,11 +41,20 @@ const { reducer, actions } = createSlice({
         animation: 'fade',
         delay: 4000,
       });
-      console.log('Login error', payload)
     },
     onLogoutSuccess: state => {
+      state.isAuthenticated = false;
+    },
+    onLogoutError: (state, { payload }) => {
       state.token = null;
       state.isAuthenticated = false;
+      state.error = 'LogoutError \n' + payload;
+      error({
+        text: `Logout error : \n ${payload}`,
+        type: 'error',
+        animation: 'fade',
+        delay: 4000,
+      });
     },
     onRegisterRequest: (state) => {
       state.error = '';
@@ -59,7 +66,6 @@ const { reducer, actions } = createSlice({
       state.token = payload.data.user.token;
       state.isAuthenticated = true;
       state.error = '';
-      console.log('RegisterSuccess', payload)
 
     },
     onRegisterError: (state, { payload }) => {
@@ -76,6 +82,7 @@ const { reducer, actions } = createSlice({
 
 export const { onLoginSuccess,
   onLogoutSuccess,
+  onLogoutError,
   onLoginRequest,
   onLoginError,
   onRegisterRequest,
