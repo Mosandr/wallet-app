@@ -9,7 +9,7 @@ const validationSchema = Yup.object().shape({
     .matches(/\w+[@]\w+\.\w+/)
     .required(),
   password: Yup.string()
-    .matches(/^.{6,12}$/)
+    .matches(/^.{6,20}$/)
     .required(),
 });
 

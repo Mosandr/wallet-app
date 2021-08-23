@@ -16,7 +16,7 @@ import storage from 'redux-persist/lib/storage';
 const authPersistConfig = {
   key: 'user',
   storage,
-  blacklist: [],
+  blacklist: ['error'],
 };
 const middleware = [
   ...getDefaultMiddleware({

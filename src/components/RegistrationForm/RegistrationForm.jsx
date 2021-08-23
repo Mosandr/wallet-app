@@ -1,17 +1,19 @@
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import authOps from '../../redux/auth/authOperations';
 import AuthRegisterForm from '../AuthRegisterForm/AuthRegisterForm';
 import * as Yup from 'yup';
+import styles from './RegistrationForm.module.css';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
     .matches(/\w+[@]\w+\.\w+/)
     .required(),
-  password: Yup.string().min(6).max(12).required(),
+  password: Yup.string().min(6).max(20).required(),
   passwordConfirm: Yup.string().when('password', (password, field) =>
     password ? field.required().oneOf([Yup.ref('password')]) : field,
   ),
-  userName: Yup.string().min(1).max(12).required(),
+  userName: Yup.string().min(2).max(20).required(),
 });
 
 function RegistrationForm() {
@@ -49,17 +51,21 @@ function RegistrationForm() {
   ];
   const dispatch = useDispatch();
   const onRegisterSubmit = values => {
-    const { email, password } = values;
-    console.log(email, password);
+    const { email, password, userName: name } = values;
+    console.log('Register Formik submit!');
+    dispatch(authOps.register({ email, password, name }));
   };
 
   return (
-    <AuthRegisterForm
-      validationSchema={validationSchema}
-      onSubmit={onRegisterSubmit}
-      buttonsSettings={buttonsSettings}
-      fieldsSettings={fieldsSettings}
-    />
+    <>
+      <div className={styles.backdrop}></div>
+      <AuthRegisterForm
+        validationSchema={validationSchema}
+        onSubmit={onRegisterSubmit}
+        buttonsSettings={buttonsSettings}
+        fieldsSettings={fieldsSettings}
+      />
+    </>
   );
 }
 

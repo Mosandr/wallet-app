@@ -1,11 +1,16 @@
 import { Fragment } from 'react';
+import { useSelector } from 'react-redux';
+import userSelector from '../../redux/auth/authSelectors';
 import Media from 'react-media';
 import RegistrationForm from '../../components/RegistrationForm/RegistrationForm';
 import smallHeadImg from '../../images/frame_register_small.svg';
 import bigHeadImg from '../../images/frame_register_big.svg';
+import '@pnotify/core/dist/PNotify.css';
 import styles from './RegisterView.module.css';
 
 function RegisterView() {
+  const error = useSelector(userSelector.getError);
+
   return (
     <div className={styles.registerView}>
       <div className={styles.registerViewHead}>
@@ -35,6 +40,7 @@ function RegisterView() {
           )}
         </Media>
         <p className={styles.registerViewTitle}>Finance App</p>
+        {error && <p>{error}</p>}
       </div>
       <RegistrationForm />
     </div>
