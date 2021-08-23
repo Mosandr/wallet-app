@@ -1,0 +1,76 @@
+.pageHeader {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 60px;
+  padding: 15px 20px;
+  font-size: 18px;
+  background-color: var(--text-background-white);
+}
+
+.logo {
+  width: 120px;
+  height: 30px;
+}
+
+.headerMenu {
+  display: flex;
+  align-items: center;
+  color: var(--text-placeholder);
+}
+
+.headerMenuName {
+  width: 80px;
+  text-align: end;
+  margin-right: 10px;
+}
+
+.headerMenuLogout {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.headerMenuLogout::before {
+  content: '';
+  display: block;
+  width: 18px;
+  height: 18px;
+  background-image: url('../../icons/exit.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.headerMenuLogout > span {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .pageHeader {
+    height: 80px;
+    padding: 20px 40px;
+  }
+
+  .logo {
+    width: 181px;
+    height: 40px;
+  }
+
+  .headerMenuName {
+    margin-right: 15px;
+    padding-right: 15px;
+    border-right: 1px solid var(--text-placeholder);
+  }
+
+  .headerMenuLogout > span {
+    display: block;
+    margin-left: 10px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .pageHeader {
+    height: 80px;
+    padding: 20px 85px;
+  }
+}

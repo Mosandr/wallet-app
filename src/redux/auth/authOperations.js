@@ -5,6 +5,7 @@ import {
   onLogoutSuccess,
   onLoginRequest,
   onLoginError,
+  onLogoutError,
   onRegisterRequest,
   onRegisterSuccess,
   onRegisterError
@@ -34,7 +35,6 @@ const logIn = credentials => async dispatch => {
 };
 
 const register = credentials => async dispatch => {
-  console.log('Register!');
   dispatch(onRegisterRequest());
   try {
     const response = await axios.post('/signup', credentials);
@@ -46,18 +46,15 @@ const register = credentials => async dispatch => {
   }
 };
 
-// const logOut = () => async dispatch => {
-//   dispatch(authActions.logoutRequest());
-
-//   try {
-//     await axios.post('/users/logout');
-
-//     token.unset();
-//     dispatch(authActions.logoutSuccess());
-//   } catch (error) {
-//     dispatch(authActions.logoutError(error.message));
-//   }
-// };
+const logOut = credentials => async dispatch => {
+  try {
+    await axios.post('/logout', credentials);
+    token.unset();
+    dispatch(onLogoutSuccess());
+  } catch (error) {
+    dispatch(onLogoutError(error.message));
+  }
+};
 
 // const getCurrentUser = () => async (dispatch, getState) => {
 //   const {
@@ -80,5 +77,5 @@ const register = credentials => async dispatch => {
 // };
 
 // export default { register, logIn, logOut, getCurrentUser };
-export default { logIn, register };
+export default { logIn, register, logOut };
 

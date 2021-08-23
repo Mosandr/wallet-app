@@ -14,7 +14,6 @@ const ProgressBar = () => {
         : length <= 12
         ? 'green'
         : 'red';
-    console.log({ width: `${width}%`, backgroundColor: color });
     return { width: `${width}%`, backgroundColor: color };
   };
   return (

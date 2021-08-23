@@ -1,7 +1,6 @@
 import { Formik, Form } from 'formik';
 import AuthInput from '../AuthInput/AuthInput';
 import ButtonsBlock from '../ButtonsBlock/ButtonsBlock';
-import ProgressBar from '../AuthInput/ProgressBar/ProgressBar';
 import styles from './AuthRegisterForm.module.css';
 
 function AuthRegisterForm({
