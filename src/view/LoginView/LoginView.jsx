@@ -3,7 +3,6 @@ import Media from 'react-media';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import smallHeadImg from '../../images/frame_login_small.svg';
 import bigHeadImg from '../../images/frame_login_big.svg';
-import { WithAuthRedirect } from '../../components/HOC';
 import styles from './LoginView.module.css';
 
 function LoginView() {

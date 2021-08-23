@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { string } from 'prop-types';
+import { error } from '@pnotify/core';
+import '@pnotify/core/dist/PNotify.css';
+import '@pnotify/core/dist/BrightTheme.css';
 
 const initialState = {
   userId: null,
@@ -11,12 +13,14 @@ const initialState = {
   error: '',
 };
 
+
 const { reducer, actions } = createSlice({
   name: 'user',
   initialState,
   reducers: {
     onLoginRequest: (state) => {
       console.log('LoginRequest')
+      state.error = '';
       state.isLoading = true;
     },
     onLoginSuccess: (state, { payload }) => {
@@ -25,12 +29,20 @@ const { reducer, actions } = createSlice({
       state.email = payload.data.user.email;
       state.isAuthenticated = true;
       state.isLoading = false;
-      console.log('Logon success')
+      state.error = '';
+      console.log('Login success')
     },
     onLoginError: (state, { payload }) => {
       state.token = null;
       state.isAuthenticated = false;
-      state.error = payload
+      state.error = 'Login error \n' + payload;
+      error({
+        text: `Login error : \n ${payload}`,
+        type: 'error',
+        animation: 'fade',
+        delay: 4000,
+      });
+      console.log('Login error', payload)
     },
     onLogoutSuccess: state => {
       state.token = null;
@@ -51,7 +63,12 @@ const { reducer, actions } = createSlice({
     },
     onRegisterError: (state, { payload }) => {
       state.error = 'RegisterError \n' + payload;
-      console.log('RegisterError', payload)
+      error({
+        text: `Registration error : \n ${payload}`,
+        type: 'error',
+        animation: 'fade',
+        delay: 4000,
+      });
     },
   },
 });

@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import authOps from '../../redux/auth/authOperations';
 import AuthRegisterForm from '../AuthRegisterForm/AuthRegisterForm';
 import * as Yup from 'yup';
+import styles from './RegistrationForm.module.css';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -56,12 +57,15 @@ function RegistrationForm() {
   };
 
   return (
-    <AuthRegisterForm
-      validationSchema={validationSchema}
-      onSubmit={onRegisterSubmit}
-      buttonsSettings={buttonsSettings}
-      fieldsSettings={fieldsSettings}
-    />
+    <>
+      <div className={styles.backdrop}></div>
+      <AuthRegisterForm
+        validationSchema={validationSchema}
+        onSubmit={onRegisterSubmit}
+        buttonsSettings={buttonsSettings}
+        fieldsSettings={fieldsSettings}
+      />
+    </>
   );
 }
 
