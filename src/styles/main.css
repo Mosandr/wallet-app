@@ -12,7 +12,10 @@
   --breakpoint-desktop: 1280px;
   --breakpoint-tablet: 768px;
   --breakpoint-mobile: 320px;
+   --main-font: "Roboto", sans-serif;
+  --secondary-font: "Poppins", sans-serif;
 }
+
 *,
 *::before,
 *::after {
@@ -24,26 +27,30 @@
 body {
   height: 100vh;
   background-color: var(--background-main);
-  font-family: 'Roboto', sans-serif;
+  font-family: var(--main-font);
+  font-style: normal;
   line-height: 1.5;
 }
-ul {
-  list-style: none;
-}
-
-/* body {
-  background-color: rgb(228, 228, 228);
-  color: #222222;
-}
 
 ul {
-  padding: 0;
   margin: 0;
+  padding: 0;
   list-style: none;
-} */
+}
+
+a {
+  text-decoration: none;
+}
+
+image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
 
 @media screen and (min-width: 768px) {
   body {
+    height: 1024px;
     background-image: url('../images/ellipse_1.svg'),
       url('../images/ellipse_2_small.svg');
     background-position: left bottom, right top;
@@ -53,6 +60,7 @@ ul {
 
 @media screen and (min-width: 1280px) {
   body {
+    height: 100vh;
     background-image: url('../images/ellipse_1.svg'),
       url('../images/ellipse_2.svg');
     background-position: left bottom, right top;
