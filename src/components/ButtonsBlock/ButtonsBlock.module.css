@@ -1,5 +1,6 @@
 .buttonsWrapper {
   width: 280px;
+  margin: 0 auto;
 }
 
 .formButton {
@@ -28,8 +29,8 @@
 }
 
 .notOk {
-  color: var(--text-background-white);
-  background-color: var(--text-border-icon-blue);
+  background-color: var(--text-background-white);
+  color: var(--text-border-icon-blue);
   border-color: var(--text-border-icon-blue);
 }
 
