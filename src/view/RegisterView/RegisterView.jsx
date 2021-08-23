@@ -1,120 +1,50 @@
-// import styles from "./RegisterView.module.css"
+import { Fragment } from 'react';
+import { useSelector } from 'react-redux';
+import userSelector from '../../redux/auth/authSelectors';
+import Media from 'react-media';
+import RegistrationForm from '../../components/RegistrationForm/RegistrationForm';
+import smallHeadImg from '../../images/frame_register_small.svg';
+import bigHeadImg from '../../images/frame_register_big.svg';
+import '@pnotify/core/dist/PNotify.css';
+import styles from './RegisterView.module.css';
 
 function RegisterView() {
-  return <div>RegisterView</div>;
-}
-
-export default RegisterView;
-
-/*
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { authOperations } from '../redux/auth';
-
-const styles = {
-  form: {
-    width: 320,
-    margin: '0 auto',
-  },
-  label: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: 15,
-  },
-  button: {
-    margin: 0,
-    padding: '6px',
-    backgroundColor: '#222222',
-    border: '1px solid #ffffff',
-    borderRadius: '6px',
-    boxShadow: '0px 0px 10px 2px rgba(0, 0, 0, 0.7)',
-    color: '#ffffff',
-    font: 'inherit',
-    cursor: 'pointer',
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  }
-};
-
-export default function RegisterView() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const dispatch = useDispatch();
-  const onRegister = () => dispatch(authOperations.register({name, email, password}));
-
-  const handleChange = ({target: {name, value}}) => {
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
-      
-      case 'email':
-        setEmail(value);
-        break;
-      
-      case 'password':
-        setPassword(value);
-        break;
-      
-      default:
-        console.error('Error from RegisterView');
-    }
-  };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-
-    onRegister();
-    setName('');
-    setEmail('');
-    setPassword('');
-  };
+  const error = useSelector(userSelector.getError);
 
   return (
-    <div>
-      <h1>Registration Page</h1>
-
-      <form
-        onSubmit={handleSubmit}
-        style={styles.form}
-        autoComplete="off"
-      >
-        <label style={styles.label}>
-          Name:
-          <input
-            type="text"
-            name="name"
-            value={name}
-            onChange={handleChange}
-          />
-        </label>
-
-        <label style={styles.label}>
-          Email:
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
-        </label>
-
-        <label style={styles.label}>
-          Password:
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
-        </label>
-
-        <button style={styles.button} type="submit">Register</button>
-      </form>
+    <div className={styles.registerView}>
+      <div className={styles.registerViewHead}>
+        <Media
+          queries={{
+            small: '(min-width: 768px) and (max-width: 1279px)',
+            large: '(min-width: 1280px)',
+          }}
+        >
+          {matches => (
+            <Fragment>
+              {matches.small && (
+                <img
+                  src={smallHeadImg}
+                  className={styles.registerViewImage}
+                  alt="Finance App"
+                />
+              )}
+              {matches.large && (
+                <img
+                  src={bigHeadImg}
+                  className={styles.registerViewImage}
+                  alt="Finance App"
+                />
+              )}
+            </Fragment>
+          )}
+        </Media>
+        <p className={styles.registerViewTitle}>Finance App</p>
+        {error && <p>{error}</p>}
+      </div>
+      <RegistrationForm />
     </div>
   );
 }
-*/
+
+export default RegisterView;

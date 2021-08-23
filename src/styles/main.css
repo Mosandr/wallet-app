@@ -41,3 +41,30 @@ ul {
 a {
   text-decoration: none;
 }
+
+image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    min-height: 1024px;
+    background-image: url('../images/ellipse_1.svg'),
+      url('../images/ellipse_2_small.svg');
+    background-position: left bottom, right top;
+    background-repeat: no-repeat;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  body {
+    min-height: 720px;
+    height: 100vh;
+    background-image: url('../images/ellipse_1.svg'),
+      url('../images/ellipse_2.svg');
+    background-position: left bottom, right top;
+    background-repeat: no-repeat;
+  }
+}
