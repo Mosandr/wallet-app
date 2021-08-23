@@ -32,7 +32,7 @@
 
 .notOk {
   color: var(--text-border-icon-blue);
-  background-color: #ffffff;
+  background-color: var(--text-background-white);
   border-color: var(--text-border-icon-blue);
 }
 
