@@ -1,19 +1,33 @@
-import styles from './DashboardView.module.css';
+/* Modules */
+import { useState, useCallback } from 'react';
 import { Route, Switch, Redirect } from 'react-router';
 import { useMediaQuery } from 'react-responsive';
+
+/* Components */
+import Container from '../../components/Container/Container';
 import Header from '../../components/Header/Header';
 import Navigation from '../../components/Navigation/Navigation';
 import Currency from '../../components/Currency/Currency';
 import Balance from '../../components/Balance/Balance';
 import HomeTab from '../../components/HomeTab/HomeTab';
 import DiagramTab from '../../components/DiagramTab/DiagramTab';
-import Container from '../../components/Container/Container';
+import ModalBackdrop from '../../components/ModalBackdrop/ModalBackdrop';
+import ModalAddTransactions from '../../components/ModalAddTransactions/ModalAddTransactions';
+
+/* Styles */
+import styles from './DashboardView.module.css';
 
 function DashboardView() {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const isTabletOrDesktop = useMediaQuery({
     query: '(min-width: 768px)',
   });
+
+  const [showModal, setShowModal] = useState(false);
+  const toggleModal = useCallback(() => {
+    setShowModal(prevShowModal => !prevShowModal);
+  }, []);
+
   return (
     <>
       <Header />
@@ -35,6 +49,7 @@ function DashboardView() {
           </div>
         </Container>
       )}
+
       {isMobile && (
         <>
           <Navigation />
@@ -42,8 +57,18 @@ function DashboardView() {
             <Route path="/" exact component={HomeTab} />
             <Route path="/stat" exact component={DiagramTab} />
             <Route path="/currency" exact component={Currency} />
+            <Redirect to="/" />
           </Switch>
         </>
+      )}
+
+      {/* Временная кнопка для открытия модалки: */}
+      <button onClick={toggleModal}>Open Modal</button>
+
+      {showModal && (
+        <ModalBackdrop onClose={toggleModal}>
+          <ModalAddTransactions onClose={toggleModal} />
+        </ModalBackdrop>
       )}
     </>
   );

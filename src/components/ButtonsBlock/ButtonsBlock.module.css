@@ -19,6 +19,8 @@
 .formButton a {
   color: inherit;
   text-decoration: none;
+  font-family: var(--main-font);
+  letter-spacing: 0.1em;
 }
 
 .ok {
@@ -29,8 +31,8 @@
 }
 
 .notOk {
-  background-color: var(--text-background-white);
   color: var(--text-border-icon-blue);
+  background-color: var(--text-background-white);
   border-color: var(--text-border-icon-blue);
 }
 
