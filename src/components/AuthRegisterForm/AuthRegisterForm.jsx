@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Formik, Form } from 'formik';
 import AuthInput from '../AuthInput/AuthInput';
 import ButtonsBlock from '../ButtonsBlock/ButtonsBlock';
@@ -10,15 +9,7 @@ function AuthRegisterForm({
   buttonsSettings,
   fieldsSettings,
 }) {
-  const [password, setPassword] = useState('');
-
-  const inputsOnChangeListener = e => {
-    if (e.target.name === 'password') setPassword(e.target.name);
-    if (e.target.name === 'passwordConfirm') {
-      if (password !== e.target.value) console.log('passwords are not equal!');
-    }
-  };
-
+  console.log(fieldsSettings);
   return (
     <div className={styles.authRegFormContainer}>
       <div className={styles.logo}></div>
@@ -34,6 +25,7 @@ function AuthRegisterForm({
       >
         <Form>
           {fieldsSettings.map(({ fieldName, placeholder, iconType, type }) => {
+            console.log({ fieldName, placeholder, iconType, type });
             return (
               <AuthInput
                 key={fieldName}
@@ -41,7 +33,6 @@ function AuthRegisterForm({
                 type={type}
                 placeholder={placeholder}
                 iconType={iconType}
-                onChange={inputsOnChangeListener}
               />
             );
           })}
