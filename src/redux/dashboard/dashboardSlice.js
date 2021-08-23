@@ -5,7 +5,6 @@ const initialState = {
   isAuthenticated: false,
   token: null,
   error: '',
-  isLoading: false,
 };
 
 const { reducer, actions } = createSlice({

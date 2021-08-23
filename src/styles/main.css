@@ -12,15 +12,32 @@
   --breakpoint-desktop: 1280px;
   --breakpoint-tablet: 768px;
   --breakpoint-mobile: 320px;
+  --main-font: "Roboto", sans-serif;
+  --secondary-font: "Poppins", sans-serif;
 }
 
-/* body {
-  background-color: rgb(228, 228, 228);
-  color: #222222;
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  height: 100vh;
+  background-color: var(--background-main);
+  font-family: var(--main-font);
+  font-style: normal;
+  line-height: 1.5;
 }
 
 ul {
-  padding: 0;
   margin: 0;
+  padding: 0;
   list-style: none;
-} */
+}
+
+a {
+  text-decoration: none;
+}

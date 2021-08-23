@@ -1,5 +1,5 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import reducer from './auth/authSlice';
+import authReducer from './auth/authSlice';
 
 import {
   FLUSH,
@@ -28,7 +28,7 @@ const middleware = [
 
 const store = configureStore({
   reducer: {
-    user: persistReducer(authPersistConfig, reducer),
+    user: persistReducer(authPersistConfig, authReducer),
   },
   middleware,
 
