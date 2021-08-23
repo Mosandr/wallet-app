@@ -1,8 +1,8 @@
 import { Fragment } from 'react';
 import Media from 'react-media';
 import LoginForm from '../../components/LoginForm/LoginForm';
-import smallHeadImg from '../../images/Frame_login_small.svg';
-import bigHeadImg from '../../images/Frame_login_big.svg';
+import smallHeadImg from '../../images/frame_login_small.svg';
+import bigHeadImg from '../../images/frame_login_big.svg';
 import styles from './LoginView.module.css';
 
 function LoginView() {
