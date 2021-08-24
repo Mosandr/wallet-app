@@ -1,0 +1,153 @@
+@media screen and (max-width: 767px) {
+  .table_container {
+    min-width: 280px;
+    /* max-width: 500px; */
+    height: 174px;
+    /* text-align: center; */
+    border-radius: 30px;
+    border-collapse: collapse;
+
+    background: #4a56e2;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 33px;
+  }
+
+  .table_head {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 27px;
+    color: #ffffff;
+    background: #6e78e8;
+  }
+
+  th:first-child {
+    border-top-left-radius: 30px;
+  }
+  th:last-child {
+    border-top-right-radius: 30px;
+  }
+
+  th {
+    padding: 11px 20px 12px;
+  }
+
+  td {
+    font-size: 16px;
+    line-height: 24px;
+    color: #ffffff;
+    padding: 10px 20px;
+  }
+
+  td:nth-child(2) {
+    text-align: center;
+  }
+
+  td:nth-child(3) {
+    text-align: end;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .table_container {
+    position: relative;
+    top: -80px;
+    right: -350px;
+    min-width: 334px;
+    height: 174px;
+    border-radius: 30px;
+    border-collapse: collapse;
+    background: #4a56e2;
+  }
+
+  .table_head {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 27px;
+    color: #ffffff;
+    background: #6e78e8;
+  }
+
+  th:first-child {
+    border-top-left-radius: 30px;
+  }
+  th:last-child {
+    border-top-right-radius: 30px;
+  }
+
+  th {
+    padding: 11px 20px 12px;
+  }
+
+  td {
+    font-size: 16px;
+    line-height: 24px;
+    color: #ffffff;
+    padding: 10px 20px;
+  }
+
+  td:nth-child(2) {
+    text-align: center;
+  }
+
+  td:nth-child(3) {
+    text-align: end;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .table_container {
+    position: relative;
+    left: 0px;
+    top: 130px;
+
+    min-width: 348px;
+    height: 347px;
+    border-radius: 30px;
+    border-collapse: collapse;
+
+    background: #4a56e2;
+    margin-left: auto;
+    margin-right: 30px;
+    margin-top: 33px;
+    margin-bottom: 49px;
+  }
+
+  .s {
+    height: 134px;
+  }
+
+  .table_head {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 27px;
+    color: #ffffff;
+    background: #6e78e8;
+  }
+
+  th:first-child {
+    border-top-left-radius: 30px;
+  }
+  th:last-child {
+    border-top-right-radius: 30px;
+  }
+
+  th {
+    padding: 11px 20px 12px;
+  }
+
+  td {
+    font-size: 16px;
+    line-height: 24px;
+    color: #ffffff;
+    padding: 10px 20px;
+  }
+
+  td:nth-child(2) {
+    text-align: center;
+  }
+
+  td:nth-child(3) {
+    text-align: end;
+  }
+}
