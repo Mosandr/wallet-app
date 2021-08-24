@@ -20,7 +20,6 @@ const { reducer, actions } = createSlice({
   initialState,
   reducers: {
     onLoginRequest: (state) => {
-      state.error = '';
       state.isLoading = true;
     },
     onLoginSuccess: (state, { payload }) => {
@@ -32,8 +31,7 @@ const { reducer, actions } = createSlice({
       state.error = '';
     },
     onLoginError: (state, { payload }) => {
-      state.token = null;
-      state.isAuthenticated = false;
+      state.isLoading = false;
       state.error = 'Login error \n' + payload;
       error({
         text: `Login error : \n ${payload}`,
@@ -46,6 +44,7 @@ const { reducer, actions } = createSlice({
       state.email = '';
       state.name = '';
       state.isAuthenticated = false;
+      state.token = null;
     },
     onLogoutError: (state, { payload }) => {
       state.error = 'LogoutError \n' + payload;
