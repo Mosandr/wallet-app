@@ -46,9 +46,9 @@ const register = credentials => async dispatch => {
   }
 };
 
-const logOut = credentials => async dispatch => {
+const logOut = () => async dispatch => {
   try {
-    await axios.post('/logout', credentials);
+    await axios.post('/logout');
     token.unset();
     dispatch(onLogoutSuccess());
   } catch (error) {

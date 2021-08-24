@@ -43,11 +43,11 @@ const { reducer, actions } = createSlice({
       });
     },
     onLogoutSuccess: state => {
+      state.email = '';
+      state.name = '';
       state.isAuthenticated = false;
     },
     onLogoutError: (state, { payload }) => {
-      state.token = null;
-      state.isAuthenticated = false;
       state.error = 'LogoutError \n' + payload;
       error({
         text: `Logout error : \n ${payload}`,

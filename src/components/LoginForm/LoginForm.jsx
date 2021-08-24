@@ -30,6 +30,7 @@ function LoginForm() {
       fieldName: 'password',
       placeholder: 'Пароль',
       iconType: 'lock',
+      type: 'password',
     },
   ];
   const dispatch = useDispatch();
