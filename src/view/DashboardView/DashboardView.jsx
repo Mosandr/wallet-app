@@ -36,14 +36,14 @@ function DashboardView() {
         </Container>
       )}
       {isMobile && (
-        <>
+        <Container>
           <Navigation />
           <Switch>
             <Route path="/" exact component={HomeTab} />
             <Route path="/stat" exact component={DiagramTab} />
             <Route path="/currency" exact component={Currency} />
           </Switch>
-        </>
+        </Container>
       )}
     </>
   );

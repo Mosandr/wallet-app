@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 import {
   onLoginSuccess,
@@ -7,7 +6,7 @@ import {
   onLoginError,
   onRegisterRequest,
   onRegisterSuccess,
-  onRegisterError
+  onRegisterError,
 } from './authSlice';
 
 axios.defaults.baseURL = 'http://localhost:3001/api/users';
@@ -81,4 +80,3 @@ const register = credentials => async dispatch => {
 
 // export default { register, logIn, logOut, getCurrentUser };
 export default { logIn, register };
-
