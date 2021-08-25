@@ -11,7 +11,6 @@ const initialState = {
   token: null,
   isLoading: false,
   error: '',
-  isLoading: false,
 };
 
 
@@ -79,7 +78,8 @@ const { reducer, actions } = createSlice({
   },
 });
 
-export const { onLoginSuccess,
+export const {
+  onLoginSuccess,
   onLogoutSuccess,
   onLogoutError,
   onLoginRequest,

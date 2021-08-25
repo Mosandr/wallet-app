@@ -21,13 +21,16 @@ const token = {
   },
 };
 
+const tokenPresenceCheck = storedToken => dispatch => {
+  token.set(storedToken)
+}
+
 const logIn = credentials => async dispatch => {
   console.log('login');
   dispatch(onLoginRequest());
   try {
     const response = await axios.post('/users/login', credentials);
     token.set(response.data.data.user.token);
-    console.log(response.data.data.user.token);
     dispatch(onLoginSuccess(response.data));
   } catch (error) {
     dispatch(onLoginError(error.message));
@@ -47,6 +50,7 @@ const register = credentials => async dispatch => {
 };
 
 const logOut = () => async dispatch => {
+  console.log('logout')
   try {
     const response = await axios.post('/users/logout');
     console.log(response);
@@ -79,4 +83,4 @@ const logOut = () => async dispatch => {
 
 // export default { register, logIn, logOut, getCurrentUser };
 
-export default { logIn, register, logOut };
+export default { logIn, register, logOut, tokenPresenceCheck };

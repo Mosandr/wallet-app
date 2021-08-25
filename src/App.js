@@ -1,4 +1,7 @@
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import authOps from './redux/auth/authOperations';
+import authSelectors from './redux/auth/authSelectors';
 import { Redirect, Switch } from 'react-router-dom';
 import PublicRoute from './components/_routes/PublicRoute';
 import PrivateRoute from './components/_routes/PrivateRoute';
@@ -6,6 +9,16 @@ import { routes } from './routes';
 import Loader from './components/Loader/Loader';
 
 const App = () => {
+
+  const token = useSelector(authSelectors.getToken) || localStorage.getItem('');
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (token) {
+      dispatch(authOps.tokenPresenceCheck(token))
+    }
+  }, [])
+
   return (
     <Suspense fallback={<Loader type="Circles" />}>
       <Switch>
