@@ -11,15 +11,13 @@ const initialState = {
   token: null,
   isLoading: false,
   error: '',
-  isLoading: false,
 };
-
 
 const { reducer, actions } = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    onLoginRequest: (state) => {
+    onLoginRequest: state => {
       state.isLoading = true;
     },
     onLoginSuccess: (state, { payload }) => {
@@ -55,20 +53,21 @@ const { reducer, actions } = createSlice({
         delay: 4000,
       });
     },
-    onRegisterRequest: (state) => {
+    onRegisterRequest: state => {
       state.error = '';
       state.isLoading = true;
     },
     onRegisterSuccess: (state, { payload }) => {
-      state.userId = payload.data.user.userId
-      state.email = payload.data.user.email
+      state.userId = payload.data.user.userId;
+      state.email = payload.data.user.email;
       state.token = payload.data.user.token;
       state.isAuthenticated = true;
+      state.isLoading = false;
       state.error = '';
-
     },
     onRegisterError: (state, { payload }) => {
       state.error = 'RegisterError \n' + payload;
+      state.isLoading = false;
       error({
         text: `Registration error : \n ${payload}`,
         type: 'error',
@@ -79,12 +78,14 @@ const { reducer, actions } = createSlice({
   },
 });
 
-export const { onLoginSuccess,
+export const {
+  onLoginSuccess,
   onLogoutSuccess,
   onLogoutError,
   onLoginRequest,
   onLoginError,
   onRegisterRequest,
   onRegisterSuccess,
-  onRegisterError } = actions;
+  onRegisterError,
+} = actions;
 export default reducer;

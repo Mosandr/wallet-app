@@ -78,5 +78,5 @@ const logOut = () => async dispatch => {
 // };
 
 // export default { register, logIn, logOut, getCurrentUser };
-
+// eslint-disable-next-line
 export default { logIn, register, logOut };
