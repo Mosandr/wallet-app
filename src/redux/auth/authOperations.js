@@ -78,4 +78,5 @@ const logOut = () => async dispatch => {
 // };
 
 // export default { register, logIn, logOut, getCurrentUser };
+
 export default { logIn, register, logOut };

@@ -51,7 +51,7 @@ function DashboardView() {
       )}
 
       {isMobile && (
-        <>
+        <Container>
           <Navigation />
           <Switch>
             <Route path="/" exact component={HomeTab} />
@@ -59,7 +59,7 @@ function DashboardView() {
             <Route path="/currency" exact component={Currency} />
             <Redirect to="/" />
           </Switch>
-        </>
+        </Container>
       )}
 
       {/* Временная кнопка для открытия модалки: */}
