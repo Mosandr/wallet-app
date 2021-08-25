@@ -10,7 +10,7 @@ import {
   onRegisterError,
 } from './authSlice';
 
-axios.defaults.baseURL = 'http://localhost:3001/api/users';
+axios.defaults.baseURL = 'https://wallet-goit.herokuapp.com/api';
 
 const token = {
   set(token) {
@@ -25,7 +25,7 @@ const logIn = credentials => async dispatch => {
   console.log('login');
   dispatch(onLoginRequest());
   try {
-    const response = await axios.post('/login', credentials);
+    const response = await axios.post('/users/login', credentials);
     token.set(response.data.data.user.token);
     console.log(response.data.data.user.token);
     dispatch(onLoginSuccess(response.data));
@@ -37,7 +37,7 @@ const logIn = credentials => async dispatch => {
 const register = credentials => async dispatch => {
   dispatch(onRegisterRequest());
   try {
-    const response = await axios.post('/signup', credentials);
+    const response = await axios.post('/users/signup', credentials);
     token.set(response.data.data.user.token);
     dispatch(onRegisterSuccess(response.data));
   } catch (error) {
@@ -48,7 +48,7 @@ const register = credentials => async dispatch => {
 
 const logOut = () => async dispatch => {
   try {
-    const response = await axios.post('/logout');
+    const response = await axios.post('/users/logout');
     console.log(response);
     token.unset();
     dispatch(onLogoutSuccess());

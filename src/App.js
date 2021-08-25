@@ -1,9 +1,9 @@
-import { Suspense } from "react";
-import { Redirect, Switch } from "react-router-dom";
-import PublicRoute from "./components/_routes/PublicRoute";
-import PrivateRoute from "./components/_routes/PrivateRoute";
-import { routes } from "./routes";
-import Loader from "./components/Loader/Loader";
+import { Suspense } from 'react';
+import { Redirect, Switch } from 'react-router-dom';
+import PublicRoute from './components/_routes/PublicRoute';
+import PrivateRoute from './components/_routes/PrivateRoute';
+import { routes } from './routes';
+import Loader from './components/Loader/Loader';
 
 const App = () => {
   return (
@@ -37,7 +37,7 @@ const App = () => {
                 restricted={restricted}
                 component={component}
               ></PrivateRoute>
-            )
+            ),
         )}
         <Redirect to="/" />
       </Switch>
