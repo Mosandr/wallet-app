@@ -49,7 +49,7 @@ function Currency() {
               {currencie
                 .filter(item => item.ccy !== 'BTC')
                 .map(item => (
-                  <tr>
+                  <tr key={item.ccy}>
                     <td>{item.ccy}</td>
                     <td>{Math.floor(item.buy * 100) / 100}</td>
                     <td>{Math.floor(item.sale * 100) / 100}</td>

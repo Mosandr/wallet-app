@@ -1,15 +1,16 @@
-// import { useState, useCallback } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import shortid from 'shortid';
-// import { contactsOperations, contactsSelectors } from '../../redux/contacts';
-
 /* Modules */
+// import { useState, useCallback, useEffect } from 'react';
+// import shortid from 'shortid';
+import { useEffect } from 'react';
+import { useSelector,useDispatch } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
 import Datetime from 'react-datetime';
 import moment from 'moment';
 import * as Yup from 'yup';
 
 /* Components */
+import categoriesOperations from '../../redux/categories/categoriesOperations';
+import categoriesSelectors from '../../redux/categories/categoriesSelectors';
 import { ReactComponent as IncomeIcon } from '../../icons/ModalAddTransactions/income.svg';
 import { ReactComponent as ExpenseIcon } from '../../icons/ModalAddTransactions/expense.svg';
 import { ReactComponent as CloseIcon } from '../../icons/ModalAddTransactions/close.svg';
@@ -18,49 +19,9 @@ import { ReactComponent as CalendarIcon } from '../../icons/ModalAddTransactions
 /* Styles */
 import styles from './ModalAddTransactions.module.css';
 import "react-datetime/css/react-datetime.css";
+// import categories from './categories';
 
-function ModalAddTransactions({ onClose }) {
-  // const [type, setType] = useState(null);
-  // const [sum, setSum] = useState(null);
-  // const [date, setDate] = useState(null);
-  // const [comment, setComment] = useState(null);
-
-  // const contacts = useSelector(contactsSelectors.getAllContacts);
-  // const dispatch = useDispatch();
-  // const onSubmit = () => dispatch(contactsOperations.addContact(name, number));
-
-  // const handleChange = useCallback(e => {
-  //   switch (e.currentTarget.name) {
-  //     case 'name':
-  //       setName(e.currentTarget.value);
-  //       break;
-  //     case 'number':
-  //       setNumber(e.currentTarget.value);
-  //       break;
-  //     default:
-  //       console.error('Error from ContactEditor');
-  //   }
-  // }, []);
-
-  // const handleSubmit = useCallback(e => {
-  //   e.preventDefault();
-
-  //   if (contacts.find(contact => contact.name === name)) {
-  //     alert(`${name} is already in contacts.`);
-  //     return;
-  //   };
-
-  //   onSubmit();
-  //   onSave();
-  //   setType(null);
-  //   setSum(null);
-  //   setDate(null);
-  //   setComment(null);
-  // }, [contacts, dispatch, name, number, onSave]);
-
-  // const nameInputId = shortid.generate();
-  // const numberInputId = shortid.generate();
-  
+function ModalAddTransactions({ onClose }) {  
   const validationSchema = Yup.object().shape({
     typeToggle: Yup.boolean().required(),
     category: Yup.string().required(),
@@ -95,6 +56,23 @@ function ModalAddTransactions({ onClose }) {
     return current.isAfter(beforeYesterday);
   }
 
+  const getOptions = items => {
+    let optionList = [];
+    items
+      .filter(({ type }) => type === '-')
+      .forEach(({ _id, name }) => {
+      optionList.push(<option key={_id} value={_id}>{name}</option>);
+    });
+    return optionList;
+  }
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(categoriesOperations.getCategories())
+  });
+
+  const categories = useSelector(categoriesSelectors.getCategories);
+
   return (
     <Formik initialValues={initialValue} onSubmit={handleSubmit} validationSchema={validationSchema}>
       {({ values }) => (
@@ -115,22 +93,14 @@ function ModalAddTransactions({ onClose }) {
           </label>
 
           {(!values.typeToggle) &&
-          <Field
-            className={styles.categoryInput}
-            name="category"
-            as="select"
-            placeholder="Виберите категорию"
+            <Field
+              className={styles.categoryInput}
+              name="category"
+              as="select"
+              placeholder="Виберите категорию"
           >
-            <option value="0">Основной</option>
-            <option value="1">Еда</option>
-            <option value="2">Авто</option>
-            <option value="3">Развитие</option>
-            <option value="4">Дети</option>
-            <option value="5">Дом</option>
-            <option value="6">Образование</option>
-            <option value="7">Основные</option>
-          </Field>
-          }
+            {/* {getOptions(categories)}; */}
+          </Field>}
 
           <Field
             className={styles.sumInput}
@@ -147,10 +117,12 @@ function ModalAddTransactions({ onClose }) {
               }}
               className={styles.dateInputCont}
               dateFormat="DD.MM.YYYY"
-              timeFormat={false}
+              timeFormat="HH:MM"
+              // timeFormat={false}
               isValidDate={validDate}
               initialValue={new Date()}
-              onChange={e => { values.date = e._d }}
+              // onChange={e => { values.date = e._d }}
+              onChange={e => { values.date = e._d; console.log(e._d) }}
             >
             </Datetime>
             <CalendarIcon className={styles.calendarIcon} width="18" height="20" />
@@ -185,4 +157,3 @@ function ModalAddTransactions({ onClose }) {
 }
 
 export default ModalAddTransactions;
-

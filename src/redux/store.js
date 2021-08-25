@@ -1,5 +1,7 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import authReducer from './auth/authSlice';
+import categoriesReducer from './categories/categoriesSlice';
+import transactionsReducer from './transactions/transactionsSlice';
 
 import {
   FLUSH,
@@ -29,6 +31,8 @@ const middleware = [
 const store = configureStore({
   reducer: {
     user: persistReducer(authPersistConfig, authReducer),
+    categories: categoriesReducer,
+    transactions: transactionsReducer,
   },
   middleware,
 
