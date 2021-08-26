@@ -27,10 +27,13 @@ function DiagramTab() {
 
   const total = 24000;
 
+  const selectedMonth = { value: '08', label: 'Август' };
+  const selectedYear = { value: '2021', label: '2021' };
+
   const strBalance = sumToString(total, '₴ ');
   return (
     <section className={styles.section}>
-      <h2>Статистика</h2>
+      <h2 className={styles.title}>Статистика</h2>
       <div className={styles.stat_wrapper}>
         <div className={styles.chart_wrapper}>
           <span className={styles.balance}>{strBalance}</span>
@@ -38,8 +41,8 @@ function DiagramTab() {
         </div>
         <div className={styles.table_wrapper}>
           <div className={styles.selects_wrapper}>
-            <Selector options={months} />
-            <Selector options={years} />
+            <Selector options={months} selected={selectedMonth} />
+            <Selector options={years} selected={selectedYear} />
           </div>
           <Table />
         </div>
