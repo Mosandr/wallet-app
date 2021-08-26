@@ -12,6 +12,7 @@ import Balance from '../../components/Balance/Balance';
 import HomeTab from '../../components/HomeTab/HomeTab';
 import DiagramTab from '../../components/DiagramTab/DiagramTab';
 import ModalBackdrop from '../../components/ModalBackdrop/ModalBackdrop';
+import ModalLogout from '../../components/ModalLogout/ModalLogout';
 import ModalAddTransactions from '../../components/ModalAddTransactions/ModalAddTransactions';
 
 /* Styles */
@@ -24,13 +25,18 @@ function DashboardView() {
   });
 
   const [showModal, setShowModal] = useState(false);
+  const [showModalLogout, setShowModalLogout] = useState(false);
   const toggleModal = useCallback(() => {
     setShowModal(prevShowModal => !prevShowModal);
   }, []);
 
+  const toggleModalLogout = useCallback(() => {
+    setShowModalLogout(!showModalLogout);
+  }, [showModalLogout]);
+
   return (
     <>
-      <Header />
+      <Header onLogout={toggleModalLogout} />
       {isTabletOrDesktop && (
         <Container>
           <div className={styles.dashboardWrapper}>
@@ -68,6 +74,11 @@ function DashboardView() {
       {showModal && (
         <ModalBackdrop onClose={toggleModal}>
           <ModalAddTransactions onClose={toggleModal} />
+        </ModalBackdrop>
+      )}
+      {showModalLogout && (
+        <ModalBackdrop onClose={toggleModalLogout}>
+          <ModalLogout onClose={toggleModalLogout} />
         </ModalBackdrop>
       )}
     </>
