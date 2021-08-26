@@ -36,31 +36,33 @@ function Currency() {
   } else {
     return (
       <>
-        <div className={styles.thumb}>
-          <table className={styles.table_container}>
-            <thead className={styles.table_head}>
-              <tr>
-                <th>Валюта</th>
-                <th>Покупка</th>
-                <th>Продажа</th>
-              </tr>
-            </thead>
-            <tbody>
-              {currencie
-                .filter(item => item.ccy !== 'BTC')
-                .map(item => (
-                  <tr key={item.ccy}>
-                    <td>{item.ccy}</td>
-                    <td>{Math.floor(item.buy * 100) / 100}</td>
-                    <td>{Math.floor(item.sale * 100) / 100}</td>
-                  </tr>
-                ))}
-              <tr>
-                <td className={styles.s}></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <table className={styles.table_container}>
+          <thead className={styles.table_head}>
+            <tr className={styles.currency_title}>
+              <th className={styles.currency}>Валюта</th>
+              <th className={styles.currency}>Покупка</th>
+              <th className={styles.currency}>Продажа</th>
+            </tr>
+          </thead>
+          <tbody className={styles.tbody}>
+            {currencie
+              .filter(item => item.ccy !== 'BTC')
+              .map(item => (
+                <tr key={item.ccy}>
+                  <td className={styles.currency_name}>{item.ccy}</td>
+                  <td className={styles.currency_name}>
+                    {Math.floor(item.buy * 100) / 100}
+                  </td>
+                  <td className={styles.currency_name}>
+                    {Math.floor(item.sale * 100) / 100}
+                  </td>
+                </tr>
+              ))}
+            {/* <tr className={styles.last_row}>
+              <td className={styles.s}></td>
+            </tr> */}
+          </tbody>
+        </table>
       </>
     );
   }

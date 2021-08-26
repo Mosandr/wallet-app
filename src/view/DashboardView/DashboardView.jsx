@@ -40,9 +40,11 @@ function DashboardView() {
       {isTabletOrDesktop && (
         <Container>
           <div className={styles.dashboardWrapper}>
-            <aside>
-              <Navigation />
-              <Balance />
+            <aside className={styles.aside}>
+              <div className={styles.tab_ver}>
+                <Navigation className={styles.nav_menu} />
+                <Balance />
+              </div>
               <Currency />
             </aside>
             <div className={styles.hometabWrapper}>
