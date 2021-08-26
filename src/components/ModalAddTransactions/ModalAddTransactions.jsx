@@ -11,6 +11,8 @@ import * as Yup from 'yup';
 /* Components */
 import categoriesOperations from '../../redux/categories/categoriesOperations';
 import categoriesSelectors from '../../redux/categories/categoriesSelectors';
+import transactionsOperations from '../../redux/transactions/transactionsOperations';
+import transactionsSelectors from '../../redux/transactions/transactionsSelectors';
 import { ReactComponent as IncomeIcon } from '../../icons/ModalAddTransactions/income.svg';
 import { ReactComponent as ExpenseIcon } from '../../icons/ModalAddTransactions/expense.svg';
 import { ReactComponent as CloseIcon } from '../../icons/ModalAddTransactions/close.svg';
@@ -19,7 +21,6 @@ import { ReactComponent as CalendarIcon } from '../../icons/ModalAddTransactions
 /* Styles */
 import styles from './ModalAddTransactions.module.css';
 import "react-datetime/css/react-datetime.css";
-// import categories from './categories';
 
 function ModalAddTransactions({ onClose }) {  
   const validationSchema = Yup.object().shape({
@@ -38,17 +39,26 @@ function ModalAddTransactions({ onClose }) {
 
   const initialValue = {
     typeToggle: false,
-    category: '0',
+    category: '6124b0cacab0f143c8d6bfbd',
     sum: 0.00,
     date: new Date(),
     comment: '',
   }
 
-  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+  const newTransaction = values => {
+    return {
+      timeStamp: Date.now(values.date),
+      category: values.category,
+      sum: values.sum,
+      comment: values.comment ? values.comment : "user did not leave a comment",
+    }
+  }
+
+  const dispatch = useDispatch();
+  
   const handleSubmit = async (values) => {
+    dispatch(transactionsOperations.addTransaction(newTransaction(values)));
     onClose();
-    await sleep(500);
-    alert(JSON.stringify(values, null, 2));
   }
   
   const beforeYesterday = moment().subtract(1, "day");
@@ -61,15 +71,14 @@ function ModalAddTransactions({ onClose }) {
     items
       .filter(({ type }) => type === '-')
       .forEach(({ _id, name }) => {
-      optionList.push(<option key={_id} value={_id}>{name}</option>);
-    });
+        optionList.push(<option key={_id} value={_id}>{name}</option>);
+      });
     return optionList;
   }
 
-  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(categoriesOperations.getCategories())
-  });
+  }, []);
 
   const categories = useSelector(categoriesSelectors.getCategories);
 
@@ -99,7 +108,7 @@ function ModalAddTransactions({ onClose }) {
               as="select"
               placeholder="Виберите категорию"
           >
-            {/* {getOptions(categories)}; */}
+            {getOptions(categories)};
           </Field>}
 
           <Field

@@ -28,6 +28,7 @@ const { reducer, actions } = createSlice({
       state.isLoading = true;
     },
     addTransactionSuccess: (state, { payload }) => {
+      state.list = [payload, ...state.list];
       state.isLoading = false;
     },
     addTransactionError: (state, { payload }) => {
