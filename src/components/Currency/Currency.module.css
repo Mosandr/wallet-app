@@ -20,8 +20,9 @@
     color: #ffffff;
     background: #6e78e8;
   }
+}
 
-  th:first-child {
+/* th:first-child {
     border-top-left-radius: 30px;
   }
   th:last-child {
@@ -150,4 +151,4 @@
   td:nth-child(3) {
     text-align: end;
   }
-}
+} */
