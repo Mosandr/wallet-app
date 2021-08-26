@@ -1,12 +1,12 @@
 import React from 'react';
 import Select from 'react-select';
 
-function Selector({ options, selected }) {
+function Selector({ options, selected, className, classNamePrefix }) {
   return (
     <Select
       options={options}
-      className="react-select-container"
-      classNamePrefix="react-select"
+      className={className}
+      classNamePrefix={classNamePrefix}
       defaultValue={selected}
     />
   );
