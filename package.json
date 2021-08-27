@@ -28,6 +28,7 @@
     "redux": "^4.1.1",
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
+    "reselect": "^4.0.0",
     "shortid": "^2.2.16",
     "web-vitals": "^1.0.1",
     "yup": "^0.32.9"

@@ -14,3 +14,16 @@
     border-left: 1px solid #e7e5f2;
   }
 }
+
+@media screen and (min-width: 768px) {
+  .aside {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .aside {
+    display: block;
+  }
+}

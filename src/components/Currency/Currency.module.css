@@ -20,48 +20,47 @@
     color: #ffffff;
     background: #6e78e8;
   }
-}
 
-/* th:first-child {
+  .currency:first-child {
     border-top-left-radius: 30px;
   }
-  th:last-child {
+  .currency:last-child {
     border-top-right-radius: 30px;
   }
 
-  th {
+  .currency {
     padding: 11px 20px 12px;
   }
 
-  td {
+  .currency_name {
     font-size: 16px;
     line-height: 24px;
     color: #ffffff;
     padding: 10px 20px;
   }
 
-  td:nth-child(2) {
+  .currency_name:nth-child(2) {
     text-align: center;
   }
 
-  td:nth-child(3) {
+  .currency_name:nth-child(3) {
     text-align: end;
   }
 }
 
 @media screen and (min-width: 768px) {
   .table_container {
-    position: relative;
-    top: -80px;
-    right: -350px;
-    min-width: 334px;
-    height: 174px;
+    width: 334px;
+    /* height: 174px; */
     border-radius: 30px;
     border-collapse: collapse;
     background: #4a56e2;
   }
-
+  .tbody {
+    height: 124px;
+  }
   .table_head {
+    height: 50px;
     font-weight: bold;
     font-size: 18px;
     line-height: 27px;
@@ -69,39 +68,35 @@
     background: #6e78e8;
   }
 
-  th:first-child {
+  .currency:first-child {
     border-top-left-radius: 30px;
   }
-  th:last-child {
+  .currency:last-child {
     border-top-right-radius: 30px;
   }
 
-  th {
-    padding: 11px 20px 12px;
-  }
-
-  td {
+  .currency_name {
     font-size: 16px;
     line-height: 24px;
     color: #ffffff;
     padding: 10px 20px;
   }
 
-  td:nth-child(2) {
+  .currency_name:nth-child(2) {
     text-align: center;
   }
 
-  td:nth-child(3) {
+  .currency_name:nth-child(3) {
     text-align: end;
   }
+
+  /* .last_row {
+    padding-bottom: 20px;
+  } */
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1280px) {
   .table_container {
-    position: relative;
-    left: 0px;
-    top: 130px;
-
     min-width: 348px;
     height: 347px;
     border-radius: 30px;
@@ -126,29 +121,29 @@
     background: #6e78e8;
   }
 
-  th:first-child {
+  .currency:first-child {
     border-top-left-radius: 30px;
   }
-  th:last-child {
+  .currency:last-child {
     border-top-right-radius: 30px;
   }
 
-  th {
+  .currency {
     padding: 11px 20px 12px;
   }
 
-  td {
+  .currency_name {
     font-size: 16px;
     line-height: 24px;
     color: #ffffff;
     padding: 10px 20px;
   }
 
-  td:nth-child(2) {
+  .currency_name:nth-child(2) {
     text-align: center;
   }
 
-  td:nth-child(3) {
+  .currency_name:nth-child(3) {
     text-align: end;
   }
-} */
+}
