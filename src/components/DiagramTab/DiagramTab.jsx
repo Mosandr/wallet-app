@@ -41,8 +41,18 @@ function DiagramTab() {
         </div>
         <div className={styles.table_wrapper}>
           <div className={styles.selects_wrapper}>
-            <Selector options={months} selected={selectedMonth} />
-            <Selector options={years} selected={selectedYear} />
+            <Selector
+              options={months}
+              selected={selectedMonth}
+              className="react-select-container"
+              classNamePrefix="react-select"
+            />
+            <Selector
+              options={years}
+              selected={selectedYear}
+              className="react-select-container"
+              classNamePrefix="react-select"
+            />
           </div>
           <Table />
         </div>
