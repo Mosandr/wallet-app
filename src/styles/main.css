@@ -12,8 +12,8 @@
   --breakpoint-desktop: 1280px;
   --breakpoint-tablet: 768px;
   --breakpoint-mobile: 320px;
-  --main-font: "Roboto", sans-serif;
-  --secondary-font: "Poppins", sans-serif;
+  --main-font: 'Roboto', sans-serif;
+  --secondary-font: 'Poppins', sans-serif;
 }
 
 *,
@@ -68,3 +68,5 @@ image {
     background-repeat: no-repeat;
   }
 }
+
+@import url(../components/Selector/Date-Selector.css);

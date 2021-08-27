@@ -16,18 +16,6 @@
   width: 100%;
   font-family: var(--main-font);
 }
-@media screen and (min-width: 768px) {
-  .table {
-    /* margin-left: auto;
-    margin-right: auto;
-    width: 688px; */
-  }
-}
-@media screen and (min-width: 1280px) {
-  .table {
-    /* width: 700px; */
-  }
-}
 
 .tableHeader {
   height: 58px;

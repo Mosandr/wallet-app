@@ -1,8 +1,15 @@
 import React from 'react';
 import Select from 'react-select';
 
-function Selector({ options }) {
-  return <Select options={options} />;
+function Selector({ options, selected, className, classNamePrefix }) {
+  return (
+    <Select
+      options={options}
+      className={className}
+      classNamePrefix={classNamePrefix}
+      defaultValue={selected}
+    />
+  );
 }
 
 export default Selector;
