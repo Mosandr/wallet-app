@@ -1,6 +1,4 @@
-import { createSelector } from "reselect";
-
-const getAllTransactions = (state) => state.transactions.result;
+const getAllTransactions = state => state.transactions.list;
 // const totalTransactions = (state) => getAllTransactions(state).length;
 
 const transactionsSelectors = {

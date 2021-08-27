@@ -8,12 +8,11 @@ import {
   getTransactionsError,
 } from './transactionsSlice';
 
-const getTransactions = credentials => async dispatch => {
+const getTransactions = () => async dispatch => {
   dispatch(getTransactionsRequest());
 
   try {
-    const response = await axios.post('/transactions', credentials);
-
+    const response = await axios.get('/transactions');
     dispatch(getTransactionsSuccess(response.data));
   } catch (err) {
     dispatch(getTransactionsError(err.message));

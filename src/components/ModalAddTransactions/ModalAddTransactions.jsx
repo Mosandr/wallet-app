@@ -2,7 +2,7 @@
 // import { useState, useCallback, useEffect } from 'react';
 // import shortid from 'shortid';
 import { useEffect } from 'react';
-import { useSelector,useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
 import Datetime from 'react-datetime';
 import moment from 'moment';
@@ -20,9 +20,9 @@ import { ReactComponent as CalendarIcon } from '../../icons/ModalAddTransactions
 
 /* Styles */
 import styles from './ModalAddTransactions.module.css';
-import "react-datetime/css/react-datetime.css";
+import 'react-datetime/css/react-datetime.css';
 
-function ModalAddTransactions({ onClose }) {  
+function ModalAddTransactions({ onClose }) {
   const validationSchema = Yup.object().shape({
     typeToggle: Yup.boolean().required(),
     category: Yup.string().required(),
@@ -31,85 +31,103 @@ function ModalAddTransactions({ onClose }) {
     comment: Yup.string(),
   });
 
-  const validation = (obj) => {
+  const validation = obj => {
     validationSchema.validate(obj).catch(function (err) {
-      alert(err.name + ': ' + err.errors)
+      alert(err.name + ': ' + err.errors);
     });
-  }
+  };
 
   const initialValue = {
     typeToggle: false,
     category: '6124b0cacab0f143c8d6bfbd',
-    sum: 0.00,
+    sum: 0.0,
     date: new Date(),
     comment: '',
-  }
+  };
 
   const newTransaction = values => {
     return {
       timeStamp: Date.now(values.date),
       category: values.category,
       sum: values.sum,
-      comment: values.comment ? values.comment : "user did not leave a comment",
-    }
-  }
+      comment: values.comment ? values.comment : 'user did not leave a comment',
+    };
+  };
 
   const dispatch = useDispatch();
-  
-  const handleSubmit = async (values) => {
+
+  const handleSubmit = async values => {
     dispatch(transactionsOperations.addTransaction(newTransaction(values)));
     onClose();
-  }
-  
-  const beforeYesterday = moment().subtract(1, "day");
-  const validDate = (current) => {
+  };
+
+  const beforeYesterday = moment().subtract(1, 'day');
+  const validDate = current => {
     return current.isAfter(beforeYesterday);
-  }
+  };
 
   const getOptions = items => {
     let optionList = [];
     items
       .filter(({ type }) => type === '-')
       .forEach(({ _id, name }) => {
-        optionList.push(<option key={_id} value={_id}>{name}</option>);
+        optionList.push(
+          <option key={_id} value={_id}>
+            {name}
+          </option>,
+        );
       });
     return optionList;
-  }
+  };
 
   useEffect(() => {
-    dispatch(categoriesOperations.getCategories())
+    dispatch(categoriesOperations.getCategories());
+    // eslint-disable-next-line
   }, []);
 
   const categories = useSelector(categoriesSelectors.getCategories);
 
   return (
-    <Formik initialValues={initialValue} onSubmit={handleSubmit} validationSchema={validationSchema}>
+    <Formik
+      initialValues={initialValue}
+      onSubmit={handleSubmit}
+      validationSchema={validationSchema}
+    >
       {({ values }) => (
         <Form className={styles.container}>
-          <button className={styles.closeButton} type="button" onClick={onClose}>
+          <button
+            className={styles.closeButton}
+            type="button"
+            onClick={onClose}
+          >
             <CloseIcon className={styles.closeIcon} width="16" height="16" />
           </button>
 
           <h2 className={styles.title}>Добавить транзакцию</h2>
 
           <label className={styles.typeLabel}>
-            <Field className={styles.typeInput} name="typeToggle" type="checkbox" />
+            <Field
+              className={styles.typeInput}
+              name="typeToggle"
+              type="checkbox"
+            />
 
             {values.typeToggle}
 
-            {(values.typeToggle) && <IncomeIcon width="220" height="44" />}
-            {(!values.typeToggle) && <ExpenseIcon width="220" height="44" />}
+            {values.typeToggle && <IncomeIcon width="220" height="44" />}
+            {!values.typeToggle && <ExpenseIcon width="220" height="44" />}
           </label>
 
-          {(!values.typeToggle) &&
+          {!values.typeToggle && (
             <Field
               className={styles.categoryInput}
               name="category"
               as="select"
               placeholder="Виберите категорию"
-          >
-            {getOptions(categories)};
-          </Field>}
+            >
+              {getOptions(categories)};
+            </Field>
+          )}
 
           <Field
             className={styles.sumInput}
@@ -122,7 +140,7 @@ function ModalAddTransactions({ onClose }) {
           <div className={styles.dateCont}>
             <Datetime
               inputProps={{
-                className: styles.dateInput
+                className: styles.dateInput,
               }}
               className={styles.dateInputCont}
               dateFormat="DD.MM.YYYY"
@@ -131,10 +149,16 @@ function ModalAddTransactions({ onClose }) {
               isValidDate={validDate}
               initialValue={new Date()}
               // onChange={e => { values.date = e._d }}
-              onChange={e => { values.date = e._d; console.log(e._d) }}
-            >
-            </Datetime>
-            <CalendarIcon className={styles.calendarIcon} width="18" height="20" />
+              onChange={e => {
+                values.date = e._d;
+                console.log(e._d);
+              }}
+            ></Datetime>
+            <CalendarIcon
+              className={styles.calendarIcon}
+              width="18"
+              height="20"
+            />
           </div>
 
           <Field
@@ -150,7 +174,7 @@ function ModalAddTransactions({ onClose }) {
             onClick={() => validation(values)}
           >
             Добавить
-        </button>
+          </button>
 
           <button
             className={styles.formButton + ' ' + styles.notOk}
@@ -158,11 +182,11 @@ function ModalAddTransactions({ onClose }) {
             onClick={onClose}
           >
             Отмена
-        </button>
+          </button>
         </Form>
       )}
     </Formik>
-  )
+  );
 }
 
 export default ModalAddTransactions;

@@ -1,10 +1,19 @@
 import styles from './HomeTab.module.css';
 import { useMediaQuery } from 'react-responsive';
 import Balance from '../Balance/Balance';
-import transactions from './transactions';
 import Container from '../Container/Container';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import transactionsSelectors from '../../redux/transactions/transactionsSelectors';
+import transactionsOperations from '../../redux/transactions/transactionsOperations';
 
 function HomeTab() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(transactionsOperations.getTransactions());
+  }, [dispatch]);
+  const transactions = useSelector(transactionsSelectors.getAllTransactions);
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const isTabletOrDesktop = useMediaQuery({
     query: '(min-width: 768px)',
@@ -17,65 +26,56 @@ function HomeTab() {
           <Container>
             <Balance />
             <ul className={styles.transactionList}>
-              {transactions.map(
-                ({
-                  id,
-                  date,
-                  type,
-                  category,
-                  comment,
-                  sum,
-                  monthlyBalance,
-                }) => (
+              {transactions.length !== 0 &&
+                transactions.map(el => (
                   <li
+                    className={styles.transactionItem}
+                    key={el._id}
                     style={{
                       borderLeft:
-                        type === '+'
+                        el.type === '+'
                           ? '5px solid #24CCA7'
                           : '5px solid #FF6596',
                     }}
-                    className={styles.transactionItem}
-                    key={id}
                   >
                     <ul className={styles.transactionParamsList}>
                       <li className={styles.transactionParamsItem}>
                         <p className={styles.paramName}>Дата</p>
-                        <p className={styles.paramValue}>{date}</p>
+                        <p className={styles.paramValue}>{el.date}</p>
                       </li>
                       <li className={styles.transactionParamsItem}>
                         <p className={styles.paramName}>Тип</p>
-                        <p className={styles.paramValue}>{type}</p>
+                        <p className={styles.paramValue}>{el.type}</p>
                       </li>
                       <li className={styles.transactionParamsItem}>
                         <p className={styles.paramName}>Категория</p>
-                        <p className={styles.paramValue}>{category}</p>
+                        <p className={styles.paramValue}>{el.category?.name}</p>
                       </li>
                       <li className={styles.transactionParamsItem}>
                         <p className={styles.paramName}>Комментарий</p>
-                        <p className={styles.paramValue}>{comment}</p>
+                        <p className={styles.paramValue}>{el.comment}</p>
                       </li>
                       <li className={styles.transactionParamsItem}>
                         <p className={styles.paramName}>Сумма</p>
                         <p
                           style={{
-                            color: type === '+' ? '#24CCA7' : '#FF6596',
+                            color: el.type === '+' ? '#24CCA7' : '#FF6596',
                             fontWeight: 700,
                           }}
                           className={styles.paramValue}
                         >
-                          {sum.toFixed(2)}
+                          {el.sum.toFixed(2)}
                         </p>
                       </li>
                       <li className={styles.transactionParamsItem}>
                         <p className={styles.paramName}>Баланс</p>
                         <p className={styles.paramValue}>
-                          {monthlyBalance.toFixed(2)}
+                          {el.balance.toFixed(2)}
                         </p>
                       </li>
                     </ul>
                   </li>
-                ),
-              )}
+                ))}
             </ul>
           </Container>
         </>
@@ -95,31 +95,22 @@ function HomeTab() {
             </thead>
 
             <tbody>
-              {transactions.map(
-                ({
-                  id,
-                  date,
-                  type,
-                  category,
-                  comment,
-                  sum,
-                  monthlyBalance,
-                }) => (
-                  <tr className={styles.tr} key={id}>
-                    <td className={styles.td}>{date}</td>
-                    <td className={styles.td}>{type}</td>
-                    <td className={styles.td}>{category}</td>
-                    <td className={styles.td}>{comment}</td>
+              {transactions.length !== 0 &&
+                transactions.map(el => (
+                  <tr key={el._id} className={styles.tr}>
+                    <td className={styles.td}>{el.date}</td>
+                    <td className={styles.td}>{el.type}</td>
+                    <td className={styles.td}>{el.category?.name}</td>
+                    <td className={styles.td}>{el.comment}</td>
                     <td
                       className={styles.td}
-                      style={{ color: type === '+' ? '#24CCA7' : '#FF6596' }}
+                      style={{ color: el.type === '+' ? '#24CCA7' : '#FF6596' }}
                     >
-                      {sum.toFixed(2)}
+                      {el.sum?.toFixed(2)}
                     </td>
-                    <td className={styles.td}>{monthlyBalance.toFixed(2)}</td>
+                    <td className={styles.td}>{el.balance.toFixed(2)}</td>
                   </tr>
-                ),
-              )}
+                ))}
             </tbody>
           </table>
         </div>

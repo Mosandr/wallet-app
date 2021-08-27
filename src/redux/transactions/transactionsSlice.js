@@ -1,7 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { error } from "@pnotify/core";
-import "@pnotify/core/dist/PNotify.css";
-import "@pnotify/core/dist/BrightTheme.css";
+import { createSlice } from '@reduxjs/toolkit';
+import '@pnotify/core/dist/PNotify.css';
+import '@pnotify/core/dist/BrightTheme.css';
 
 const initialState = {
   list: [],
@@ -10,25 +9,24 @@ const initialState = {
 };
 
 const { reducer, actions } = createSlice({
-  name: "transactions",
+  name: 'transactions',
   initialState,
   reducers: {
-    getTransactionsRequest: (state) => {
+    getTransactionsRequest: state => {
       state.isLoading = true;
     },
     getTransactionsSuccess: (state, { payload }) => {
-      state.list = payload;
+      state.list = payload.data.docs;
       state.isLoading = false;
     },
     getTransactionsError: (state, { payload }) => {
       state.error = payload;
       state.isLoading = false;
     },
-    addTransactionRequest: (state) => {
+    addTransactionRequest: state => {
       state.isLoading = true;
     },
     addTransactionSuccess: (state, { payload }) => {
-      state.list = [payload, ...state.list];
       state.isLoading = false;
     },
     addTransactionError: (state, { payload }) => {

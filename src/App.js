@@ -9,15 +9,16 @@ import { routes } from './routes';
 import Loader from './components/Loader/Loader';
 
 const App = () => {
-
-  const token = useSelector(authSelectors.getToken) || localStorage.getItem('');
+  // const token = useSelector(authSelectors.getToken) || localStorage.getItem('');
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (token) {
-      dispatch(authOps.tokenPresenceCheck(token))
-    }
-  }, [])
+    dispatch(authOps.getCurrentUser());
+    // if (token) {
+    //   dispatch(authOps.tokenPresenceCheck(token));
+    // }
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <Suspense fallback={<Loader type="Circles" />}>

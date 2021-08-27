@@ -8,6 +8,9 @@ import {
   onRegisterRequest,
   onRegisterSuccess,
   onRegisterError,
+  getCurrentUserRequest,
+  getCurrentUserSuccess,
+  getCurrentUserError,
 } from './authSlice';
 
 axios.defaults.baseURL = 'https://wallet-goit.herokuapp.com/api';
@@ -22,8 +25,8 @@ const token = {
 };
 
 const tokenPresenceCheck = storedToken => dispatch => {
-  token.set(storedToken)
-}
+  token.set(storedToken);
+};
 
 const logIn = credentials => async dispatch => {
   console.log('login');
@@ -31,6 +34,7 @@ const logIn = credentials => async dispatch => {
   try {
     const response = await axios.post('/users/login', credentials);
     token.set(response.data.data.user.token);
+    console.log(response.data.data.user);
     dispatch(onLoginSuccess(response.data));
   } catch (error) {
     dispatch(onLoginError(error.message));
@@ -50,7 +54,7 @@ const register = credentials => async dispatch => {
 };
 
 const logOut = () => async dispatch => {
-  console.log('logout')
+  console.log('logout');
   try {
     const response = await axios.post('/users/logout');
     console.log(response);
@@ -60,27 +64,27 @@ const logOut = () => async dispatch => {
     dispatch(onLogoutError(error.message));
   }
 };
+const getCurrentUser = () => async (dispatch, getState) => {
+  const {
+    user: { token: persistedToken },
+  } = getState();
 
-// const getCurrentUser = () => async (dispatch, getState) => {
-//   const {
-//     auth: { token: persistedToken },
-//   } = getState();
+  console.log(persistedToken);
 
-//   if (!persistedToken) return;
+  if (!persistedToken) return;
 
-//   token.set(persistedToken);
+  token.set(persistedToken);
 
-//   dispatch(authActions.getCurrentUserRequest());
+  dispatch(getCurrentUserRequest());
 
-//   try {
-//     const response = await axios.get('/users/current');
+  try {
+    const response = await axios.get('/users/current');
 
-//     dispatch(authActions.getCurrentUserSuccess(response.data));
-//   } catch (error) {
-//     dispatch(authActions.getCurrentUserError(error.message));
-//   }
-// };
+    dispatch(getCurrentUserSuccess(response.data));
+  } catch (error) {
+    dispatch(getCurrentUserError(error.message));
+  }
+};
 
-// export default { register, logIn, logOut, getCurrentUser };
-
-export default { logIn, register, logOut, tokenPresenceCheck };
+// eslint-disable-next-line
+export default { logIn, register, logOut, getCurrentUser, tokenPresenceCheck };
