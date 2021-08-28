@@ -1,4 +1,7 @@
 import axios from 'axios';
+import { error as errorNotify } from '@pnotify/core';
+import '@pnotify/core/dist/PNotify.css';
+import '@pnotify/core/dist/BrightTheme.css';
 import {
   onLoginSuccess,
   onLogoutSuccess,
@@ -8,9 +11,9 @@ import {
   onRegisterRequest,
   onRegisterSuccess,
   onRegisterError,
-  getCurrentUserRequest,
-  getCurrentUserSuccess,
-  getCurrentUserError,
+  onGetCurrentUserRequest,
+  onGetCurrentUserSuccess,
+  onGetCurrentUserError,
 } from './authSlice';
 
 axios.defaults.baseURL = 'https://wallet-goit.herokuapp.com/api';
@@ -38,6 +41,12 @@ const logIn = credentials => async dispatch => {
     dispatch(onLoginSuccess(response.data));
   } catch (error) {
     dispatch(onLoginError(error.message));
+    errorNotify({
+      text: `Login error : \n ${error}`,
+      type: 'error',
+      animation: 'fade',
+      delay: 4000,
+    });
   }
 };
 
@@ -48,8 +57,13 @@ const register = credentials => async dispatch => {
     token.set(response.data.data.user.token);
     dispatch(onRegisterSuccess(response.data));
   } catch (error) {
-    console.log(error);
     dispatch(onRegisterError(error.message));
+    errorNotify({
+      text: `Registration error : \n ${error}`,
+      type: 'error',
+      animation: 'fade',
+      delay: 4000,
+    });
   }
 };
 
@@ -62,6 +76,12 @@ const logOut = () => async dispatch => {
     dispatch(onLogoutSuccess());
   } catch (error) {
     dispatch(onLogoutError(error.message));
+    errorNotify({
+      text: `Logout error : \n ${error}`,
+      type: 'error',
+      animation: 'fade',
+      delay: 4000,
+    });
   }
 };
 const getCurrentUser = () => async (dispatch, getState) => {
@@ -69,22 +89,29 @@ const getCurrentUser = () => async (dispatch, getState) => {
     user: { token: persistedToken },
   } = getState();
 
-  console.log(persistedToken);
+const getCurrentUser = () => async (dispatch, getState) => {
+  const {
+    user: { token: persistedToken },
+  } = getState();
 
   if (!persistedToken) return;
 
   token.set(persistedToken);
 
-  dispatch(getCurrentUserRequest());
+  dispatch(onGetCurrentUserRequest());
 
   try {
     const response = await axios.get('/users/current');
-
-    dispatch(getCurrentUserSuccess(response.data));
+    dispatch(onGetCurrentUserSuccess(response.data));
   } catch (error) {
-    dispatch(getCurrentUserError(error.message));
+    dispatch(onGetCurrentUserError(error.message));
+    errorNotify({
+      text: `Authentication error : \n ${error}`,
+      type: 'error',
+      animation: 'fade',
+      delay: 4000,
+    });
   }
 };
 
-// eslint-disable-next-line
-export default { logIn, register, logOut, getCurrentUser, tokenPresenceCheck };
+export default { logIn, register, logOut, tokenPresenceCheck, getCurrentUser };

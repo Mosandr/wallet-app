@@ -6,6 +6,8 @@ const initialState = {
   list: [],
   error: null,
   isLoading: false,
+  filterMonth: (new Date().getMonth() + 1).toString().padStart(2, '0'),
+  filterYear: new Date().getFullYear().toString(),
 };
 
 const { reducer, actions } = createSlice({
@@ -26,12 +28,21 @@ const { reducer, actions } = createSlice({
     addTransactionRequest: state => {
       state.isLoading = true;
     },
-    addTransactionSuccess: (state, { payload }) => {
+    addTransactionSuccess: (state, _) => {
       state.isLoading = false;
     },
     addTransactionError: (state, { payload }) => {
       state.error = payload;
       state.isLoading = false;
+    },
+    monthChange: (state, { payload }) => {
+      state.filterMonth = payload;
+    },
+    yearChange: (state, { payload }) => {
+      state.filterYear = payload;
+    },
+    yearListChange: (state, { payload }) => {
+      state.yearList = payload;
     },
   },
 });
@@ -43,5 +54,8 @@ export const {
   addTransactionRequest,
   addTransactionSuccess,
   addTransactionError,
+  monthChange,
+  yearChange,
+  yearListChange,
 } = actions;
 export default reducer;

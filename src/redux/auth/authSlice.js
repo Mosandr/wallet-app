@@ -1,7 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { error } from '@pnotify/core';
-import '@pnotify/core/dist/PNotify.css';
-import '@pnotify/core/dist/BrightTheme.css';
 
 const initialState = {
   userId: null,
@@ -30,14 +27,9 @@ const { reducer, actions } = createSlice({
       state.error = '';
     },
     onLoginError: (state, { payload }) => {
+      state.isAuthenticated = false;
       state.isLoading = false;
       state.error = 'Login error \n' + payload;
-      error({
-        text: `Login error : \n ${payload}`,
-        type: 'error',
-        animation: 'fade',
-        delay: 4000,
-      });
     },
     onLogoutSuccess: state => {
       state.email = '';
@@ -46,13 +38,11 @@ const { reducer, actions } = createSlice({
       state.token = null;
     },
     onLogoutError: (state, { payload }) => {
+      state.email = '';
+      state.name = '';
+      state.isAuthenticated = false;
+      state.token = null;
       state.error = 'LogoutError \n' + payload;
-      error({
-        text: `Logout error : \n ${payload}`,
-        type: 'error',
-        animation: 'fade',
-        delay: 4000,
-      });
     },
     onRegisterRequest: state => {
       state.error = '';
@@ -60,6 +50,7 @@ const { reducer, actions } = createSlice({
     },
     onRegisterSuccess: (state, { payload }) => {
       state.userId = payload.data.user.userId;
+      state.name = payload.data.user.name;
       state.email = payload.data.user.email;
       state.token = payload.data.user.token;
       state.isAuthenticated = true;
@@ -67,14 +58,26 @@ const { reducer, actions } = createSlice({
       state.error = '';
     },
     onRegisterError: (state, { payload }) => {
+      state.isAuthenticated = false;
       state.error = 'RegisterError \n' + payload;
       state.isLoading = false;
-      error({
-        text: `Registration error : \n ${payload}`,
-        type: 'error',
-        animation: 'fade',
-        delay: 4000,
-      });
+
+    },
+
+    onGetCurrentUserRequest: (state, { payload }) => {
+      state.isLoading = true;
+    },
+    onGetCurrentUserSuccess: (state, { payload }) => {
+      state.isLoading = false;
+      state.email = payload.data.user.email;
+      state.name = payload.data.user.name;
+    },
+    onGetCurrentUserError: (state, { payload }) => {
+      state.isLoading = false;
+      state.email = '';
+      state.name = '';
+      state.isAuthenticated = false;
+      state.token = null;
     },
     getCurrentUserRequest: (state, { payload }) => {
       state.isLoading = true;
@@ -102,8 +105,8 @@ export const {
   onRegisterRequest,
   onRegisterSuccess,
   onRegisterError,
-  getCurrentUserRequest,
-  getCurrentUserSuccess,
-  getCurrentUserError,
+  onGetCurrentUserRequest,
+  onGetCurrentUserSuccess,
+  onGetCurrentUserError,
 } = actions;
 export default reducer;
