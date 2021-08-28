@@ -1,5 +1,4 @@
 // import styles from './Chart.module.css'
-
 import { Doughnut } from 'react-chartjs-2';
 
 const Chart = ({ width, height, className }) => {

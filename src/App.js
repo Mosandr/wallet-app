@@ -10,13 +10,10 @@ import Loader from './components/Loader/Loader';
 
 const App = () => {
 
-  const token = useSelector(authSelectors.getToken) || localStorage.getItem('');
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (token) {
-      dispatch(authOps.tokenPresenceCheck(token))
-    }
+    dispatch(authOps.getCurrentUser())
   }, [])
 
   return (
