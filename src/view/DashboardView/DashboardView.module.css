@@ -1,9 +1,9 @@
 .dashboardWrapper {
-  padding-top: 10px;
+  /* padding-top: 10px; */
 }
 @media screen and (min-width: 768px) {
   .dashboardWrapper {
-    padding-top: 20px;
+    /* padding-top: 20px; */
   }
 }
 @media screen and (min-width: 1280px) {
@@ -11,12 +11,19 @@
     display: flex;
   }
   .hometabWrapper {
+    padding-left: 20px;
     border-left: 1px solid #e7e5f2;
+    box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05);
   }
+}
+
+.aside {
+  padding-top: 10px;
 }
 
 @media screen and (min-width: 768px) {
   .aside {
+    padding-top: 20px;
     display: flex;
     justify-content: space-between;
   }

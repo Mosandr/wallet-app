@@ -2,24 +2,9 @@ import styles from './Table.module.css';
 import sumToString from '../../helpers/numberToStringCurrency';
 import shortid from 'shortid';
 
-const transactionsTotal = [
-  { category: 'Кафе и рестораны', total: 5000, color: '#00AD84' },
-  { category: 'Продукты', total: 3500.5, color: '#FFD8D0' },
-  { category: 'Авто', total: 1000, color: '#FD9498' },
-  { category: 'Образование', total: 2000, color: '#81E1FF' },
-  { category: 'Дети', total: 2000.45, color: '#6E78E8' },
-  { category: 'Товары для дома', total: 800.5, color: '#4A56E2' },
-  { category: 'Досуг', total: 350.99, color: '#24CCA7' },
-  { category: 'Красота и здоровье', total: 320.45, color: '#C5BAFF' },
-  { category: 'Разное', total: 8000, color: '#FED057' },
-];
-
 const headers = ['Категория', 'Сумма'];
 
-const totalProfit = 27350;
-const totalLoose = 22549.24;
-
-function Table() {
+function Table({ transactionsTotal, totalProfit, totalLoose }) {
   return (
     <div className={styles.tableWrapper}>
       <table className={styles.table}>

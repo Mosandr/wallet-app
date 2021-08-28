@@ -5,11 +5,11 @@ import {
   getCategoriesError,
 } from './categoriesSlice';
 
-const getCategories = credentials => async dispatch => {
+const getCategories = () => async dispatch => {
   dispatch(getCategoriesRequest());
 
   try {
-    const response = await axios.get('/categories', credentials);
+    const response = await axios.get('/categories');
 
     dispatch(getCategoriesSuccess(response.data.data.categoriesList));
   } catch (error) {
