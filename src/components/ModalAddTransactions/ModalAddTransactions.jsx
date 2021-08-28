@@ -1,7 +1,5 @@
 /* Modules */
-// import { useState, useCallback, useEffect } from 'react';
-// import shortid from 'shortid';
-import { useEffect } from 'react';
+import { useState, useCallback,useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
 import Datetime from 'react-datetime';
@@ -12,7 +10,7 @@ import * as Yup from 'yup';
 import categoriesOperations from '../../redux/categories/categoriesOperations';
 import categoriesSelectors from '../../redux/categories/categoriesSelectors';
 import transactionsOperations from '../../redux/transactions/transactionsOperations';
-import transactionsSelectors from '../../redux/transactions/transactionsSelectors';
+import Selector from '../../components/Selector/Selector';
 import { ReactComponent as IncomeIcon } from '../../icons/ModalAddTransactions/income.svg';
 import { ReactComponent as ExpenseIcon } from '../../icons/ModalAddTransactions/expense.svg';
 import { ReactComponent as CloseIcon } from '../../icons/ModalAddTransactions/close.svg';
@@ -23,9 +21,14 @@ import styles from './ModalAddTransactions.module.css';
 import 'react-datetime/css/react-datetime.css';
 
 function ModalAddTransactions({ onClose }) {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(categoriesOperations.getCategories())
+  }, []);
+  
   const validationSchema = Yup.object().shape({
     typeToggle: Yup.boolean().required(),
-    category: Yup.string().required(),
+    // category: Yup.string().required(),
     sum: Yup.number().required().min(0.01),
     date: Yup.date().required(),
     comment: Yup.string(),
@@ -36,56 +39,72 @@ function ModalAddTransactions({ onClose }) {
       alert(err.name + ': ' + err.errors);
     });
   };
-
-  const initialValue = {
-    typeToggle: false,
-    category: '6124b0cacab0f143c8d6bfbd',
-    sum: 0.0,
-    date: new Date(),
-    comment: '',
-  };
-
-  const newTransaction = values => {
-    return {
-      timeStamp: Date.now(values.date),
-      category: values.category,
-      sum: values.sum,
-      comment: values.comment ? values.comment : 'user did not leave a comment',
-    };
-  };
-
-  const dispatch = useDispatch();
-
-  const handleSubmit = async values => {
-    dispatch(transactionsOperations.addTransaction(newTransaction(values)));
-    onClose();
-  };
-
+  
   const beforeYesterday = moment().subtract(1, 'day');
   const validDate = current => {
     return current.isAfter(beforeYesterday);
   };
+  
+  const initialValue = {
+    typeToggle: false,
+    // category: '6124b0cacab0f143c8d6bfbd',
+    sum: 0.0,
+    date: new Date(),
+    comment: '',
+  };
+  
+  const [incomeCategory, setIncomeCategory] = useState({
+    value: '6124b052cab0f143c8d6bfa9', 
+    label: 'Регулярный доход'
+  });
+  const [expenseCategory, setExpenseCategory] = useState({
+    value: '6124b0cacab0f143c8d6bfbd', 
+    label: 'Разное'
+  });
+  
+  const handleCategoryChange = useCallback((item, type) => {
+    type === '+' && setIncomeCategory(item);
+    type === '-' && setExpenseCategory(item);
+  }, []);
 
+  /*
   const getOptions = items => {
     let optionList = [];
     items
       .filter(({ type }) => type === '-')
       .forEach(({ _id, name }) => {
-        optionList.push(
-          <option key={_id} value={_id}>
-            {name}
-          </option>,
-        );
+        optionList.push(<option key={_id} value={_id}>{name}</option>);
       });
     return optionList;
+  }
+  */
+
+  const getOptions = (items, type) => {
+    return items
+      .filter(item => item.type === type)
+      .map(({ _id, name }) => {
+        return { value: _id, label: name };
+      });
   };
 
-  useEffect(() => {
-    dispatch(categoriesOperations.getCategories());
-    // eslint-disable-next-line
-  }, []);
-
   const categories = useSelector(categoriesSelectors.getCategories);
+  
+  const newTransaction = values => {
+    const typeCategory = values.typeToggle ? incomeCategory.value : expenseCategory.value;
+
+    return {
+      timeStamp: Date.now(values.date),
+      category: typeCategory,
+      // category: values.category,
+      sum: values.sum,
+      comment: values.comment ? values.comment : 'user did not leave a comment',
+    };
+  };
+
+  const handleSubmit = async values => {
+    dispatch(transactionsOperations.addTransaction(newTransaction(values)));
+    onClose();
+  };
 
   return (
     <Formik
@@ -118,16 +137,35 @@ function ModalAddTransactions({ onClose }) {
             {!values.typeToggle && <ExpenseIcon width="220" height="44" />}
           </label>
 
-          {!values.typeToggle && (
+          {(values.typeToggle) &&
+            <Selector
+              className="react-type-select-container"
+              classNamePrefix="react-type-select"
+              options={getOptions(categories, '+')}
+              value={incomeCategory}
+              onChange={(e) => handleCategoryChange(e, '+')}
+            />
+          }
+
+          {(!values.typeToggle) &&
+            <Selector
+              className="react-type-select-container"
+              classNamePrefix="react-type-select"
+              options={getOptions(categories, '-')}
+              value={expenseCategory}
+              onChange={(e) => handleCategoryChange(e, '-')}
+            />
+          }
+
+          {/* {(!values.typeToggle) &&
             <Field
               className={styles.categoryInput}
               name="category"
               as="select"
               placeholder="Виберите категорию"
-            >
-              {getOptions(categories)};
-            </Field>
-          )}
+          >
+            {getOptions(categories)};
+          </Field>} */}
 
           <Field
             className={styles.sumInput}
@@ -149,10 +187,7 @@ function ModalAddTransactions({ onClose }) {
               isValidDate={validDate}
               initialValue={new Date()}
               // onChange={e => { values.date = e._d }}
-              onChange={e => {
-                values.date = e._d;
-                console.log(e._d);
-              }}
+              onChange={e => {values.date = e._d}}
             ></Datetime>
             <CalendarIcon
               className={styles.calendarIcon}

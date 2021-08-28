@@ -128,3 +128,34 @@
   font-size: 16px;
   text-align: right;
 }
+
+.addButton {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 20px;
+  bottom: 30px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #24CCA7;
+  box-shadow: 0px 6px 15px rgba(36, 204, 167, 0.5);
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .addButton {
+    right: 40px;
+    bottom: 40px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .addButton {
+    right: 85px;
+    bottom: 40px;
+  }
+}

@@ -1,14 +1,15 @@
 import React from 'react';
 import Select from 'react-select';
 
-function Selector({ options, selected, className, classNamePrefix, onChange }) {
+function Selector({ options, value, selected, className, classNamePrefix, onChange }) {
   return (
     <Select
-      options={options}
       className={className}
       classNamePrefix={classNamePrefix}
+      options={options}
       defaultValue={selected}
-      onChange={e => onChange(e)}
+      value={value}
+      onChange={onChange}
     />
   );
 }

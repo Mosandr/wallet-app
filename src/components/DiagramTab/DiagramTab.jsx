@@ -24,14 +24,6 @@ function DiagramTab() {
     dispatch(categoriesOperations.getCategories());
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   async () => {
-
-  //   };
-  //   dispatch(transactionsOperations.getTransactions());
-  //   dispatch(categoriesOperations.getCategories());
-  // }, [dispatch]);
-
   const transactions = useSelector(selectors.getAllTransactions);
   const monthFilter = useSelector(selectors.getMonthFilter);
   const yearFilter = useSelector(selectors.getYearFilter);

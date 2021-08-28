@@ -13,7 +13,6 @@ import HomeTab from '../../components/HomeTab/HomeTab';
 import DiagramTab from '../../components/DiagramTab/DiagramTab';
 import ModalBackdrop from '../../components/ModalBackdrop/ModalBackdrop';
 import ModalLogout from '../../components/ModalLogout/ModalLogout';
-import ModalAddTransactions from '../../components/ModalAddTransactions/ModalAddTransactions';
 
 /* Styles */
 import styles from './DashboardView.module.css';
@@ -24,12 +23,7 @@ function DashboardView() {
     query: '(min-width: 768px)',
   });
 
-  const [showModal, setShowModal] = useState(false);
   const [showModalLogout, setShowModalLogout] = useState(false);
-  const toggleModal = useCallback(() => {
-    setShowModal(prevShowModal => !prevShowModal);
-  }, []);
-
   const toggleModalLogout = useCallback(() => {
     setShowModalLogout(!showModalLogout);
   }, [showModalLogout]);
@@ -70,14 +64,6 @@ function DashboardView() {
         </Container>
       )}
 
-      {/* Временная кнопка для открытия модалки: */}
-      <button onClick={toggleModal}>Open Modal</button>
-
-      {showModal && (
-        <ModalBackdrop onClose={toggleModal}>
-          <ModalAddTransactions onClose={toggleModal} />
-        </ModalBackdrop>
-      )}
       {showModalLogout && (
         <ModalBackdrop onClose={toggleModalLogout}>
           <ModalLogout onClose={toggleModalLogout} />
