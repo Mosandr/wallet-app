@@ -1,7 +1,5 @@
 const getAllTransactions = state => state.transactions.list;
-
 const getMonthFilter = state => state.transactions.filterMonth;
-
 const getYearFilter = state => state.transactions.filterYear;
 
 const transactionsSelectors = {

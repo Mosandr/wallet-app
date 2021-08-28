@@ -8,6 +8,7 @@ const initialState = {
   token: null,
   isLoading: false,
   error: '',
+  totalBalance: null,
 };
 
 const { reducer, actions } = createSlice({
@@ -77,6 +78,20 @@ const { reducer, actions } = createSlice({
       state.name = '';
       state.isAuthenticated = false;
       state.token = null;
+    },
+    getCurrentUserRequest: (state, { payload }) => {
+      state.isLoading = true;
+    },
+    getCurrentUserSuccess: (state, { payload }) => {
+      state.isLoading = false;
+      state.isAuthenticated = true;
+      state.totalBalance = payload.data.user.totalBalance;
+      state.name = payload.data.user.name;
+      state.email = payload.data.user.email;
+    },
+    getCurrentUserError: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
     },
   },
 });

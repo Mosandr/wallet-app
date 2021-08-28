@@ -18,7 +18,7 @@ const { reducer, actions } = createSlice({
       state.isLoading = true;
     },
     getTransactionsSuccess: (state, { payload }) => {
-      state.list = payload;
+      state.list = payload.data.docs;
       state.isLoading = false;
     },
     getTransactionsError: (state, { payload }) => {

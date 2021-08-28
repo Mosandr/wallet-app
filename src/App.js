@@ -9,7 +9,6 @@ import { routes } from './routes';
 import Loader from './components/Loader/Loader';
 
 const App = () => {
-
   const dispatch = useDispatch();
 
   useEffect(() => {
