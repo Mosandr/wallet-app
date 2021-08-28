@@ -10,7 +10,6 @@ const getCategories = () => async dispatch => {
 
   try {
     const response = await axios.get('/categories');
-
     dispatch(getCategoriesSuccess(response.data.data.categoriesList));
   } catch (error) {
     dispatch(getCategoriesError(error.message));

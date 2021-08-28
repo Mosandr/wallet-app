@@ -13,6 +13,7 @@ function HomeTab() {
   useEffect(() => {
     dispatch(transactionsOperations.getTransactions());
   }, [dispatch]);
+  
   const transactions = useSelector(transactionsSelectors.getAllTransactions);
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const isTabletOrDesktop = useMediaQuery({

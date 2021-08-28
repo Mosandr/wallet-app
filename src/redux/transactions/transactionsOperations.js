@@ -26,7 +26,6 @@ const addTransaction = credentials => async dispatch => {
 
   try {
     const response = await axios.post('/transactions/create', credentials);
-
     dispatch(addTransactionSuccess(response.data));
   } catch (err) {
     dispatch(addTransactionError(err.message));

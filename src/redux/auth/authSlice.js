@@ -20,28 +20,28 @@ const { reducer, actions } = createSlice({
     },
     onLoginSuccess: (state, { payload }) => {
       state.token = payload.data.user.token;
+      state.isAuthenticated = true;
       state.name = payload.data.user.name;
       state.email = payload.data.user.email;
-      state.isAuthenticated = true;
-      state.isLoading = false;
       state.error = '';
+      state.isLoading = false;
     },
     onLoginError: (state, { payload }) => {
-      state.isAuthenticated = false;
-      state.isLoading = false;
       state.error = 'Login error \n' + payload;
+      state.isLoading = false;
     },
     onLogoutSuccess: state => {
+      state.token = null;
+      state.isAuthenticated = false;
       state.email = '';
       state.name = '';
-      state.isAuthenticated = false;
-      state.token = null;
+      state.isLoading = false;
     },
     onLogoutError: (state, { payload }) => {
+      state.token = null;
+      state.isAuthenticated = false;
       state.email = '';
       state.name = '';
-      state.isAuthenticated = false;
-      state.token = null;
       state.error = 'LogoutError \n' + payload;
     },
     onRegisterRequest: state => {
@@ -49,59 +49,47 @@ const { reducer, actions } = createSlice({
       state.isLoading = true;
     },
     onRegisterSuccess: (state, { payload }) => {
-      state.userId = payload.data.user.userId;
-      state.name = payload.data.user.name;
-      state.email = payload.data.user.email;
       state.token = payload.data.user.token;
       state.isAuthenticated = true;
-      state.isLoading = false;
+      state.userId = payload.data.user.userId;
+      state.email = payload.data.user.email;
+      state.name = payload.data.user.name;
       state.error = '';
+      state.isLoading = false;
     },
     onRegisterError: (state, { payload }) => {
+      state.token = null;
       state.isAuthenticated = false;
       state.error = 'RegisterError \n' + payload;
       state.isLoading = false;
-
     },
-
     onGetCurrentUserRequest: (state, { payload }) => {
       state.isLoading = true;
     },
     onGetCurrentUserSuccess: (state, { payload }) => {
-      state.isLoading = false;
+      state.isAuthenticated = true;
       state.email = payload.data.user.email;
       state.name = payload.data.user.name;
+      state.totalBalance = payload.data.user.totalBalance;
+      state.isLoading = false;
     },
     onGetCurrentUserError: (state, { payload }) => {
-      state.isLoading = false;
+      state.token = null;
+      state.isAuthenticated = false;
       state.email = '';
       state.name = '';
-      state.isAuthenticated = false;
-      state.token = null;
-    },
-    getCurrentUserRequest: (state, { payload }) => {
-      state.isLoading = true;
-    },
-    getCurrentUserSuccess: (state, { payload }) => {
-      state.isLoading = false;
-      state.isAuthenticated = true;
-      state.totalBalance = payload.data.user.totalBalance;
-      state.name = payload.data.user.name;
-      state.email = payload.data.user.email;
-    },
-    getCurrentUserError: (state, { payload }) => {
-      state.isLoading = false;
       state.error = payload;
+      state.isLoading = false;
     },
   },
 });
 
 export const {
+  onLoginRequest,
   onLoginSuccess,
+  onLoginError,
   onLogoutSuccess,
   onLogoutError,
-  onLoginRequest,
-  onLoginError,
   onRegisterRequest,
   onRegisterSuccess,
   onRegisterError,

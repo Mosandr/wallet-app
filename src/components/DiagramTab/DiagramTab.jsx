@@ -13,16 +13,24 @@ import {
 
 import selectors from '../../redux/transactions/transactionsSelectors';
 import categoriesSelectors from '../../redux/categories/categoriesSelectors';
-import operations from '../../redux/transactions/transactionsOperations';
+import transactionsOperations from '../../redux/transactions/transactionsOperations';
 import categoriesOperations from '../../redux/categories/categoriesOperations';
 
 function DiagramTab() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(operations.getTransactions());
+    dispatch(transactionsOperations.getTransactions());
     dispatch(categoriesOperations.getCategories());
   }, [dispatch]);
+
+  // useEffect(() => {
+  //   async () => {
+
+  //   };
+  //   dispatch(transactionsOperations.getTransactions());
+  //   dispatch(categoriesOperations.getCategories());
+  // }, [dispatch]);
 
   const transactions = useSelector(selectors.getAllTransactions);
   const monthFilter = useSelector(selectors.getMonthFilter);
@@ -48,7 +56,7 @@ function DiagramTab() {
   }, []);
 
   const colors = labels.reduce((acc, item) => {
-    const color = categories.find(({ name }) => name === item).color;
+    const color = categories.find(({ name }) => name === item)?.color;
     return [...acc, color];
   }, []);
 

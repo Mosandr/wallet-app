@@ -3,10 +3,10 @@ import { error as errorNotify } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/BrightTheme.css';
 import {
-  onLoginSuccess,
-  onLogoutSuccess,
   onLoginRequest,
+  onLoginSuccess,
   onLoginError,
+  onLogoutSuccess,
   onLogoutError,
   onRegisterRequest,
   onRegisterSuccess,
@@ -37,7 +37,6 @@ const logIn = credentials => async dispatch => {
   try {
     const response = await axios.post('/users/login', credentials);
     token.set(response.data.data.user.token);
-    console.log(response.data.data.user);
     dispatch(onLoginSuccess(response.data));
   } catch (error) {
     dispatch(onLoginError(error.message));
@@ -70,8 +69,7 @@ const register = credentials => async dispatch => {
 const logOut = () => async dispatch => {
   console.log('logout');
   try {
-    const response = await axios.post('/users/logout');
-    console.log(response);
+    await axios.post('/users/logout');
     token.unset();
     dispatch(onLogoutSuccess());
   } catch (error) {
@@ -84,22 +82,15 @@ const logOut = () => async dispatch => {
     });
   }
 };
+
 const getCurrentUser = () => async (dispatch, getState) => {
+  console.log('current');
   const {
     user: { token: persistedToken },
   } = getState();
-
-const getCurrentUser = () => async (dispatch, getState) => {
-  const {
-    user: { token: persistedToken },
-  } = getState();
-
   if (!persistedToken) return;
-
   token.set(persistedToken);
-
   dispatch(onGetCurrentUserRequest());
-
   try {
     const response = await axios.get('/users/current');
     dispatch(onGetCurrentUserSuccess(response.data));
@@ -114,4 +105,5 @@ const getCurrentUser = () => async (dispatch, getState) => {
   }
 };
 
+// eslint-disable-next-line
 export default { logIn, register, logOut, tokenPresenceCheck, getCurrentUser };
