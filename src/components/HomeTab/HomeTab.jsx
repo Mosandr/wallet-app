@@ -2,10 +2,13 @@ import styles from './HomeTab.module.css';
 import { useMediaQuery } from 'react-responsive';
 import Balance from '../Balance/Balance';
 import Container from '../Container/Container';
-import { useEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import transactionsSelectors from '../../redux/transactions/transactionsSelectors';
 import transactionsOperations from '../../redux/transactions/transactionsOperations';
+import ModalBackdrop from '../../components/ModalBackdrop/ModalBackdrop';
+import ModalAddTransactions from '../../components/ModalAddTransactions/ModalAddTransactions';
+import { ReactComponent as AddIcon } from '../../icons/add.svg';
 
 function HomeTab() {
   const dispatch = useDispatch();
@@ -19,6 +22,11 @@ function HomeTab() {
   const isTabletOrDesktop = useMediaQuery({
     query: '(min-width: 768px)',
   });
+
+  const [showModal, setShowModal] = useState(false);
+  const toggleModal = useCallback(() => {
+    setShowModal(prevShowModal => !prevShowModal);
+  }, []);
 
   return (
     <>
@@ -115,6 +123,16 @@ function HomeTab() {
             </tbody>
           </table>
         </div>
+      )}
+
+      <button className={styles.addButton} type="button" onClick={toggleModal}>
+        <AddIcon className={styles.addIcon} width="20" height="20" />
+      </button>
+      
+      {showModal && (
+        <ModalBackdrop onClose={toggleModal}>
+          <ModalAddTransactions onClose={toggleModal} />
+        </ModalBackdrop>
       )}
     </>
   );
