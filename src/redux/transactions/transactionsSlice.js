@@ -1,19 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { error } from "@pnotify/core";
-import "@pnotify/core/dist/PNotify.css";
-import "@pnotify/core/dist/BrightTheme.css";
+import { createSlice } from '@reduxjs/toolkit';
+import '@pnotify/core/dist/PNotify.css';
+import '@pnotify/core/dist/BrightTheme.css';
 
 const initialState = {
   list: [],
   error: null,
   isLoading: false,
+  filterMonth: (new Date().getMonth() + 1).toString().padStart(2, '0'),
+  filterYear: new Date().getFullYear().toString(),
 };
 
 const { reducer, actions } = createSlice({
-  name: "transactions",
+  name: 'transactions',
   initialState,
   reducers: {
-    getTransactionsRequest: (state) => {
+    getTransactionsRequest: state => {
       state.isLoading = true;
     },
     getTransactionsSuccess: (state, { payload }) => {
@@ -24,16 +25,24 @@ const { reducer, actions } = createSlice({
       state.error = payload;
       state.isLoading = false;
     },
-    addTransactionRequest: (state) => {
+    addTransactionRequest: state => {
       state.isLoading = true;
     },
-    addTransactionSuccess: (state, { payload }) => {
-      state.list = [payload, ...state.list];
+    addTransactionSuccess: (state, _) => {
       state.isLoading = false;
     },
     addTransactionError: (state, { payload }) => {
       state.error = payload;
       state.isLoading = false;
+    },
+    monthChange: (state, { payload }) => {
+      state.filterMonth = payload;
+    },
+    yearChange: (state, { payload }) => {
+      state.filterYear = payload;
+    },
+    yearListChange: (state, { payload }) => {
+      state.yearList = payload;
     },
   },
 });
@@ -45,5 +54,8 @@ export const {
   addTransactionRequest,
   addTransactionSuccess,
   addTransactionError,
+  monthChange,
+  yearChange,
+  yearListChange,
 } = actions;
 export default reducer;

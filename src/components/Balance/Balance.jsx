@@ -11,13 +11,13 @@ function Balance() {
   //     return acc + amount;
   //   }, 0);
 
-  const getBalance = useSelector(transactionsSelectors.getAllTransactions);
+  // const getBalance = useSelector(transactionsSelectors.getAllTransactions);
 
-  console.log(getBalance);
+  // console.log(getBalance);
   return (
     <div className={styles.balance_container}>
       <p className={styles.balance_title}>Ваш баланс</p>
-      <p className={styles.total_balance}>&#8372; {getBalance || 1000.01}</p>
+      <p className={styles.total_balance}>&#8372; {1000.01}</p>
     </div>
   );
 }
