@@ -1,10 +1,19 @@
-const numberToStringCurrency = (sum, currency) => {
+// const numberToStringCurrency = (sum, currency) => {
+//   const [intPart, floatPart] = sum
+//     .toString()
+//     .replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+//     .split(".");
+//   const floatString = floatPart ? "." + floatPart.padEnd(2, "0") : ".00";
+//   return currency + intPart + floatString;
+// };
+
+const numberToStringCurrency = (sum) => {
   const [intPart, floatPart] = sum
     .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
-    .split('.');
-  const floatString = floatPart ? '.' + floatPart.padEnd(2, '0') : '.00';
-  return currency + intPart + floatString;
+    .replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+    .split(".");
+  const floatString = floatPart ? "." + floatPart.padEnd(2, "0") : ".00";
+  return intPart + floatString;
 };
 
 export default numberToStringCurrency;
