@@ -5,8 +5,7 @@ import { NavLink, Route, Switch } from 'react-router-dom';
 import Home from '../HomeTab/HomeTab';
 import Stats from '../Chart/Chart';
 import Currency from '../Currency/Currency';
-import mainPage from '../../images/main_page.svg';
-import statsPage from '../../images/stats_page.svg';
+import navIconsSvg from '../../images/symbol-defs.svg';
 import currencyMob from '../../images/currency_mob.svg';
 
 function Navigation() {
@@ -24,7 +23,9 @@ function Navigation() {
             className={styles.main_link}
             activeClassName={styles.active_link}
           >
-            <img className={styles.nav_icon} src={mainPage} alt="Main page" />
+            <svg className={styles.mainPageSvg}>
+              <use href={navIconsSvg + '#icon-main_page'}></use>
+            </svg>
 
             {isTabletOrDesktop && <span className={styles.title}>Главная</span>}
           </NavLink>
@@ -36,7 +37,9 @@ function Navigation() {
             className={styles.stats_link}
             activeClassName={styles.active_link}
           >
-            <img className={styles.nav_icon} src={statsPage} alt="Stats page" />
+            <svg className={styles.statsPageSvg}>
+              <use href={navIconsSvg + '#icon-stats_page'}></use>
+            </svg>
             {isTabletOrDesktop && (
               <span className={styles.title}>Статистика</span>
             )}
@@ -50,7 +53,9 @@ function Navigation() {
               className={styles.stats_link}
               activeClassName={styles.active_link}
             >
-              <img className={styles.nav_icon} src={currencyMob} alt="" />
+              <svg className={styles.currencyPageSvg}>
+                <use href={navIconsSvg + '#icon-currency_mob'}></use>
+              </svg>
             </NavLink>
           </li>
         )}
