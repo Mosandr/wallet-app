@@ -34,3 +34,11 @@
     display: block;
   }
 }
+
+.blurBackdrop {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(50px);
+  z-index: -1;
+}

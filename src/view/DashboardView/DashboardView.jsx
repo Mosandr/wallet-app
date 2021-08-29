@@ -30,6 +30,7 @@ function DashboardView() {
 
   return (
     <>
+      <div className={styles.blurBackdrop}></div>
       <Header onLogout={toggleModalLogout} />
       {isTabletOrDesktop && (
         <Container>
