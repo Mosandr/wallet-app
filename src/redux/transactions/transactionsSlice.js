@@ -4,10 +4,10 @@ import '@pnotify/core/dist/BrightTheme.css';
 
 const initialState = {
   list: [],
-  error: null,
-  isLoading: false,
   filterMonth: (new Date().getMonth() + 1).toString().padStart(2, '0'),
   filterYear: new Date().getFullYear().toString(),
+  error: null,
+  isLoading: false,
 };
 
 const { reducer, actions } = createSlice({
@@ -28,7 +28,8 @@ const { reducer, actions } = createSlice({
     addTransactionRequest: state => {
       state.isLoading = true;
     },
-    addTransactionSuccess: (state, _) => {
+    addTransactionSuccess: (state, { payload }) => {
+      state.list = [payload, ...state.list];
       state.isLoading = false;
     },
     addTransactionError: (state, { payload }) => {

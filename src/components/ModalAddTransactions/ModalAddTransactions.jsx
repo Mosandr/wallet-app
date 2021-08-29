@@ -23,14 +23,14 @@ import 'react-datetime/css/react-datetime.css';
 function ModalAddTransactions({ onClose }) {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(categoriesOperations.getCategories())
+    dispatch(categoriesOperations.getCategories());
   }, []);
   
   const validationSchema = Yup.object().shape({
     typeToggle: Yup.boolean().required(),
     // category: Yup.string().required(),
     sum: Yup.number().required().min(0.01),
-    date: Yup.date().required(),
+    // date: Yup.date().required(),
     comment: Yup.string(),
   });
 
@@ -48,21 +48,29 @@ function ModalAddTransactions({ onClose }) {
   const initialValue = {
     typeToggle: false,
     // category: '6124b0cacab0f143c8d6bfbd',
-    sum: 0.0,
-    date: new Date(),
+    sum: '',
+    // date: new Date(),
     comment: '',
   };
   
+  const [date, setDate] = useState(new Date());
+
   const [incomeCategory, setIncomeCategory] = useState({
     value: '6124b052cab0f143c8d6bfa9', 
     label: 'Регулярный доход'
   });
+
   const [expenseCategory, setExpenseCategory] = useState({
     value: '6124b0cacab0f143c8d6bfbd', 
     label: 'Разное'
   });
   
-  const handleCategoryChange = useCallback((item, type) => {
+  
+  const handleDateChange = useCallback(item => {
+    setDate(item);
+  }, []);
+
+    const handleCategoryChange = useCallback((item, type) => {
     type === '+' && setIncomeCategory(item);
     type === '-' && setExpenseCategory(item);
   }, []);
@@ -90,14 +98,17 @@ function ModalAddTransactions({ onClose }) {
   const categories = useSelector(categoriesSelectors.getCategories);
   
   const newTransaction = values => {
+    const newDate = new Date(date);
+    const dateStamp = newDate.getTime();
     const typeCategory = values.typeToggle ? incomeCategory.value : expenseCategory.value;
 
     return {
-      timeStamp: Date.now(values.date),
+      timeStamp: dateStamp,
+      // timeStamp: Date.now(values.date),
       category: typeCategory,
       // category: values.category,
       sum: values.sum,
-      comment: values.comment ? values.comment : 'user did not leave a comment',
+      comment: values.comment ? values.comment : 'Здесь могла быть Ваша реклама!',
     };
   };
 
@@ -182,12 +193,11 @@ function ModalAddTransactions({ onClose }) {
               }}
               className={styles.dateInputCont}
               dateFormat="DD.MM.YYYY"
-              timeFormat="HH:MM"
-              // timeFormat={false}
+              timeFormat={false}
               isValidDate={validDate}
               initialValue={new Date()}
-              // onChange={e => { values.date = e._d }}
-              onChange={e => {values.date = e._d}}
+              // value={date}
+              onChange={e => handleDateChange(e._d)}
             ></Datetime>
             <CalendarIcon
               className={styles.calendarIcon}
