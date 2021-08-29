@@ -1,5 +1,6 @@
 // import styles from './Chart.module.css'
 import { Doughnut } from 'react-chartjs-2';
+import { memo } from 'react';
 
 const Chart = ({ labels, colors, totals }) => {
   const data = {
@@ -29,4 +30,4 @@ const Chart = ({ labels, colors, totals }) => {
   );
 };
 
-export default Chart;
+export default memo(Chart);
