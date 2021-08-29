@@ -1,5 +1,5 @@
 /* Modules */
-import { useState, useCallback,useEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
 import Datetime from 'react-datetime';
@@ -7,6 +7,7 @@ import moment from 'moment';
 import * as Yup from 'yup';
 
 /* Components */
+import authOperations from '../../redux/auth/authOperations';
 import categoriesOperations from '../../redux/categories/categoriesOperations';
 import categoriesSelectors from '../../redux/categories/categoriesSelectors';
 import transactionsOperations from '../../redux/transactions/transactionsOperations';
@@ -25,7 +26,7 @@ function ModalAddTransactions({ onClose }) {
   useEffect(() => {
     dispatch(categoriesOperations.getCategories());
   }, []);
-  
+
   const validationSchema = Yup.object().shape({
     typeToggle: Yup.boolean().required(),
     // category: Yup.string().required(),
@@ -39,12 +40,12 @@ function ModalAddTransactions({ onClose }) {
       alert(err.name + ': ' + err.errors);
     });
   };
-  
+
   const beforeYesterday = moment().subtract(1, 'day');
   const validDate = current => {
     return current.isAfter(beforeYesterday);
   };
-  
+
   const initialValue = {
     typeToggle: false,
     // category: '6124b0cacab0f143c8d6bfbd',
@@ -52,25 +53,24 @@ function ModalAddTransactions({ onClose }) {
     // date: new Date(),
     comment: '',
   };
-  
+
   const [date, setDate] = useState(new Date());
 
   const [incomeCategory, setIncomeCategory] = useState({
-    value: '6124b052cab0f143c8d6bfa9', 
-    label: 'Регулярный доход'
+    value: '6124b052cab0f143c8d6bfa9',
+    label: 'Регулярный доход',
   });
 
   const [expenseCategory, setExpenseCategory] = useState({
-    value: '6124b0cacab0f143c8d6bfbd', 
-    label: 'Разное'
+    value: '6124b0cacab0f143c8d6bfbd',
+    label: 'Разное',
   });
-  
-  
+
   const handleDateChange = useCallback(item => {
     setDate(item);
   }, []);
 
-    const handleCategoryChange = useCallback((item, type) => {
+  const handleCategoryChange = useCallback((item, type) => {
     type === '+' && setIncomeCategory(item);
     type === '-' && setExpenseCategory(item);
   }, []);
@@ -96,11 +96,13 @@ function ModalAddTransactions({ onClose }) {
   };
 
   const categories = useSelector(categoriesSelectors.getCategories);
-  
+
   const newTransaction = values => {
     const newDate = new Date(date);
     const dateStamp = newDate.getTime();
-    const typeCategory = values.typeToggle ? incomeCategory.value : expenseCategory.value;
+    const typeCategory = values.typeToggle
+      ? incomeCategory.value
+      : expenseCategory.value;
 
     return {
       timeStamp: dateStamp,
@@ -108,12 +110,17 @@ function ModalAddTransactions({ onClose }) {
       category: typeCategory,
       // category: values.category,
       sum: values.sum,
-      comment: values.comment ? values.comment : 'Здесь могла быть Ваша реклама!',
+      comment: values.comment
+        ? values.comment
+        : 'Здесь могла быть Ваша реклама!',
     };
   };
 
   const handleSubmit = async values => {
-    dispatch(transactionsOperations.addTransaction(newTransaction(values)));
+    await dispatch(
+      transactionsOperations.addTransaction(newTransaction(values)),
+    );
+    dispatch(authOperations.getCurrentUser());
     onClose();
   };
 
@@ -148,25 +155,25 @@ function ModalAddTransactions({ onClose }) {
             {!values.typeToggle && <ExpenseIcon width="220" height="44" />}
           </label>
 
-          {(values.typeToggle) &&
+          {values.typeToggle && (
             <Selector
               className="react-type-select-container"
               classNamePrefix="react-type-select"
               options={getOptions(categories, '+')}
               value={incomeCategory}
-              onChange={(e) => handleCategoryChange(e, '+')}
+              onChange={e => handleCategoryChange(e, '+')}
             />
-          }
+          )}
 
-          {(!values.typeToggle) &&
+          {!values.typeToggle && (
             <Selector
               className="react-type-select-container"
               classNamePrefix="react-type-select"
               options={getOptions(categories, '-')}
               value={expenseCategory}
-              onChange={(e) => handleCategoryChange(e, '-')}
+              onChange={e => handleCategoryChange(e, '-')}
             />
-          }
+          )}
 
           {/* {(!values.typeToggle) &&
             <Field

@@ -1,7 +1,6 @@
 import { Suspense, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import authOps from './redux/auth/authOperations';
-import authSelectors from './redux/auth/authSelectors';
 import { Redirect, Switch } from 'react-router-dom';
 import PublicRoute from './components/_routes/PublicRoute';
 import PrivateRoute from './components/_routes/PrivateRoute';
@@ -12,8 +11,8 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(authOps.getCurrentUser())
-  }, [])
+    dispatch(authOps.getCurrentUser());
+  }, []);
 
   return (
     <Suspense fallback={<Loader type="Circles" />}>
