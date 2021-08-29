@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  userId: null,
   name: '',
   email: '',
   isAuthenticated: false,
@@ -23,6 +22,7 @@ const { reducer, actions } = createSlice({
       state.isAuthenticated = true;
       state.name = payload.data.user.name;
       state.email = payload.data.user.email;
+      state.totalBalance = payload.data.user.totalBalance;
       state.error = '';
       state.isLoading = false;
     },
@@ -51,7 +51,6 @@ const { reducer, actions } = createSlice({
     onRegisterSuccess: (state, { payload }) => {
       state.token = payload.data.user.token;
       state.isAuthenticated = true;
-      state.userId = payload.data.user.userId;
       state.email = payload.data.user.email;
       state.name = payload.data.user.name;
       state.error = '';
