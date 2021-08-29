@@ -1,7 +1,7 @@
-import styles from './Balance.module.css';
 import { useSelector } from 'react-redux';
-import numberToStringCurrency from '../../helpers/numberToStringCurrency';
 import authSelectors from '../../redux/auth/authSelectors';
+import numberToStringCurrency from '../../helpers/numberToStringCurrency';
+import styles from './Balance.module.css';
 
 function Balance() {
   const balance = useSelector(authSelectors.getTotalBalance).toFixed(2);
