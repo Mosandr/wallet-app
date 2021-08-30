@@ -9,6 +9,7 @@ import transactionsOperations from '../../redux/transactions/transactionsOperati
 import ModalBackdrop from '../../components/ModalBackdrop/ModalBackdrop';
 import ModalAddTransactions from '../../components/ModalAddTransactions/ModalAddTransactions';
 import { ReactComponent as AddIcon } from '../../icons/add.svg';
+import sumToString from '../../helpers/numberToStringCurrency';
 
 function HomeTab() {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ function HomeTab() {
   useEffect(() => {
     dispatch(transactionsOperations.getTransactions());
   }, [dispatch]);
-  
+
   const transactions = useSelector(transactionsSelectors.getAllTransactions);
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const isTabletOrDesktop = useMediaQuery({
@@ -73,13 +74,13 @@ function HomeTab() {
                           }}
                           className={styles.paramValue}
                         >
-                          {el.sum.toFixed(2)}
+                          {sumToString(el.sum.toFixed(2), '')}
                         </p>
                       </li>
                       <li className={styles.transactionParamsItem}>
                         <p className={styles.paramName}>Баланс</p>
                         <p className={styles.paramValue}>
-                          {el.balance.toFixed(2)}
+                          {sumToString(el.balance.toFixed(2), '')}
                         </p>
                       </li>
                     </ul>
@@ -115,9 +116,11 @@ function HomeTab() {
                       className={styles.td}
                       style={{ color: el.type === '+' ? '#24CCA7' : '#FF6596' }}
                     >
-                      {el.sum?.toFixed(2)}
+                      {sumToString(el.sum.toFixed(2), '')}
                     </td>
-                    <td className={styles.td}>{el.balance.toFixed(2)}</td>
+                    <td className={styles.td}>
+                      {sumToString(el.balance.toFixed(2), '')}
+                    </td>
                   </tr>
                 ))}
             </tbody>
@@ -128,7 +131,7 @@ function HomeTab() {
       <button className={styles.addButton} type="button" onClick={toggleModal}>
         <AddIcon className={styles.addIcon} width="20" height="20" />
       </button>
-      
+
       {showModal && (
         <ModalBackdrop onClose={toggleModal}>
           <ModalAddTransactions onClose={toggleModal} />
