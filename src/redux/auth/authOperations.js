@@ -32,7 +32,6 @@ const tokenPresenceCheck = storedToken => dispatch => {
 };
 
 const logIn = credentials => async dispatch => {
-  console.log('login');
   dispatch(onLoginRequest());
   try {
     const response = await axios.post('/users/login', credentials);
@@ -67,7 +66,6 @@ const register = credentials => async dispatch => {
 };
 
 const logOut = () => async dispatch => {
-  console.log('logout');
   try {
     await axios.post('/users/logout');
     token.unset();
@@ -84,7 +82,6 @@ const logOut = () => async dispatch => {
 };
 
 const getCurrentUser = () => async (dispatch, getState) => {
-  console.log('current');
   const {
     user: { token: persistedToken },
   } = getState();

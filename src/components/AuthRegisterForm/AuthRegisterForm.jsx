@@ -27,13 +27,6 @@ function AuthRegisterForm({
             {' '}
             {fieldsSettings.map(
               ({ fieldName, placeholder, iconType, type, progressBar }) => {
-                console.log({
-                  fieldName,
-                  placeholder,
-                  iconType,
-                  type,
-                  progressBar,
-                });
                 return (
                   <AuthInput
                     key={fieldName}
