@@ -54,6 +54,13 @@
   }
 }
 
+@media screen and (min-width: 1280px) {
+  .chart_wrapper {
+    margin-left: 0;
+    margin-right: 30px;
+  }
+}
+
 .table_wrapper {
   width: 100%;
 }
