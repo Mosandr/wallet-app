@@ -11,7 +11,7 @@
     display: flex;
   }
   .hometabWrapper {
-    padding-left: 20px;
+    padding-left: 30px;
     border-left: 1px solid #e7e5f2;
     box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05);
   }
