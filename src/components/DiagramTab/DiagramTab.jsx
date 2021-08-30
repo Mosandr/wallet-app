@@ -16,10 +16,13 @@ import transactionsOperations from '../../redux/transactions/transactionsOperati
 
 function DiagramTab() {
   const dispatch = useDispatch();
+  const transactions = useSelector(selectors.getAllTransactions);
 
   useEffect(() => {
-    dispatch(transactionsOperations.getTransactions());
-  }, []);
+    if (transactions.length === 0) {
+      dispatch(transactionsOperations.getTransactions());
+    }
+  }, [dispatch]);
 
   const transactionsData = useSelector(selectors.getTransactionsStatistic);
   const monthFilter = useSelector(selectors.getMonthFilter);
