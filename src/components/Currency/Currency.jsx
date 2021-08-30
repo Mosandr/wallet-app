@@ -60,8 +60,8 @@ function Currency() {
                 </tr>
               ))}
           </tbody>
-          <div className={styles.background}></div>
         </table>
+        <div className={styles.background}></div>
 
         {/* <div className={styles.currency_container}>
           <ul className={styles.table_head}>
