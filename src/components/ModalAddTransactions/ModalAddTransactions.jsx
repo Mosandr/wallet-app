@@ -120,9 +120,14 @@ function ModalAddTransactions({ onClose }) {
     await dispatch(
       transactionsOperations.addTransaction(newTransaction(values)),
     );
+    await dispatch(transactionsOperations.getTransactions());
     dispatch(authOperations.getCurrentUser());
     onClose();
   };
+
+  // react_devtools_backend.js:2850 Warning: An unhandled error was caught from submitForm() 
+  // TypeError: _redux_transactions_transactionsOperations__WEBPACK_IMPORTED_MODULE_9__.default.getTransaction is not a function
+  //  at handleSubmit (ModalAddTransactions.jsx:123)
 
   return (
     <Formik
