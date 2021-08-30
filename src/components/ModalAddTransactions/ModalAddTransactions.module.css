@@ -80,6 +80,7 @@
   position: absolute;
   top: 6px;
   right: 2px;
+  pointer-events: none;
 }
 
 .commentInput {

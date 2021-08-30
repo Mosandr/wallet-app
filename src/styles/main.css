@@ -1,3 +1,6 @@
+@import url(../components/Selector/Date-Selector.css);
+@import url(../components/Selector/Type-Selector.css);
+
 :root {
   --background-main: #e7eaf2;
   --text-background-white: #ffffff;
@@ -68,6 +71,3 @@ image {
     background-repeat: no-repeat;
   }
 }
-
-@import url(../components/Selector/Date-Selector.css);
-@import url(../components/Selector/Type-Selector.css);
