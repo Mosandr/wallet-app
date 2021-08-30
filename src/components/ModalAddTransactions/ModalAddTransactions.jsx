@@ -25,7 +25,7 @@ function ModalAddTransactions({ onClose }) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(categoriesOperations.getCategories());
-  }, []);
+  }, [dispatch]);
 
   const validationSchema = Yup.object().shape({
     typeToggle: Yup.boolean().required(),
