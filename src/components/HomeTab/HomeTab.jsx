@@ -1,7 +1,6 @@
 import styles from './HomeTab.module.css';
 import { useMediaQuery } from 'react-responsive';
 import Balance from '../Balance/Balance';
-import Container from '../Container/Container';
 import { useState, useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import transactionsSelectors from '../../redux/transactions/transactionsSelectors';
@@ -29,65 +28,70 @@ function HomeTab() {
     setShowModal(prevShowModal => !prevShowModal);
   }, []);
 
+  const sliceDate = date => {
+    const sliceDate = date.split('.');
+    const year = sliceDate[2].substr(-2);
+    sliceDate[2] = year;
+    return sliceDate.join('.');
+  };
+
   return (
     <>
       {isMobile && (
         <>
-          <Container>
-            <Balance />
-            <ul className={styles.transactionList}>
-              {transactions.length !== 0 &&
-                transactions.map(el => (
-                  <li
-                    className={styles.transactionItem}
-                    key={el._id}
-                    style={{
-                      borderLeft:
-                        el.type === '+'
-                          ? '5px solid #24CCA7'
-                          : '5px solid #FF6596',
-                    }}
-                  >
-                    <ul className={styles.transactionParamsList}>
-                      <li className={styles.transactionParamsItem}>
-                        <p className={styles.paramName}>Дата</p>
-                        <p className={styles.paramValue}>{el.date}</p>
-                      </li>
-                      <li className={styles.transactionParamsItem}>
-                        <p className={styles.paramName}>Тип</p>
-                        <p className={styles.paramValue}>{el.type}</p>
-                      </li>
-                      <li className={styles.transactionParamsItem}>
-                        <p className={styles.paramName}>Категория</p>
-                        <p className={styles.paramValue}>{el.category?.name}</p>
-                      </li>
-                      <li className={styles.transactionParamsItem}>
-                        <p className={styles.paramName}>Комментарий</p>
-                        <p className={styles.paramValue}>{el.comment}</p>
-                      </li>
-                      <li className={styles.transactionParamsItem}>
-                        <p className={styles.paramName}>Сумма</p>
-                        <p
-                          style={{
-                            color: el.type === '+' ? '#24CCA7' : '#FF6596',
-                            fontWeight: 700,
-                          }}
-                          className={styles.paramValue}
-                        >
-                          {sumToString(el.sum.toFixed(2), '')}
-                        </p>
-                      </li>
-                      <li className={styles.transactionParamsItem}>
-                        <p className={styles.paramName}>Баланс</p>
-                        <p className={styles.paramValue}>
-                          {sumToString(el.balance.toFixed(2), '')}
-                        </p>
-                      </li>
-                    </ul>
-                  </li>
-                ))}
-            </ul>
-          </Container>
+          <Balance />
+          <ul className={styles.transactionList}>
+            {transactions.length !== 0 &&
+              transactions.map(el => (
+                <li
+                  className={styles.transactionItem}
+                  key={el._id}
+                  style={{
+                    borderLeft:
+                      el.type === '+'
+                        ? '5px solid #24CCA7'
+                        : '5px solid #FF6596',
+                  }}
+                >
+                  <ul className={styles.transactionParamsList}>
+                    <li className={styles.transactionParamsItem}>
+                      <p className={styles.paramName}>Дата</p>
+                      <p className={styles.paramValue}>{sliceDate(el.date)}</p>
+                    </li>
+                    <li className={styles.transactionParamsItem}>
+                      <p className={styles.paramName}>Тип</p>
+                      <p className={styles.paramValue}>{el.type}</p>
+                    </li>
+                    <li className={styles.transactionParamsItem}>
+                      <p className={styles.paramName}>Категория</p>
+                      <p className={styles.paramValue}>{el.category?.name}</p>
+                    </li>
+                    <li className={styles.transactionParamsItem}>
+                      <p className={styles.paramName}>Комментарий</p>
+                      <p className={styles.paramValue}>{el.comment}</p>
+                    </li>
+                    <li className={styles.transactionParamsItem}>
+                      <p className={styles.paramName}>Сумма</p>
+                      <p
+                        style={{
+                          color: el.type === '+' ? '#24CCA7' : '#FF6596',
+                          fontWeight: 700,
+                        }}
+                        className={styles.paramValue}
+                      >
+                        {sumToString(el.sum.toFixed(2), '')}
+                      </p>
+                    </li>
+                    <li className={styles.transactionParamsItem}>
+                      <p className={styles.paramName}>Баланс</p>
+                      <p className={styles.paramValue}>
+                        {sumToString(el.balance.toFixed(2), '')}
+                      </p>
+                    </li>
+                  </ul>
+                </li>
+              ))}
+          </ul>
         </>
       )}
       {isTabletOrDesktop && (
@@ -108,7 +112,7 @@ function HomeTab() {
               {transactions.length !== 0 &&
                 transactions.map(el => (
                   <tr key={el._id} className={styles.tr}>
-                    <td className={styles.td}>{el.date}</td>
+                    <td className={styles.td}>{sliceDate(el.date)}</td>
                     <td className={styles.td}>{el.type}</td>
                     <td className={styles.td}>{el.category?.name}</td>
                     <td className={styles.td}>{el.comment}</td>

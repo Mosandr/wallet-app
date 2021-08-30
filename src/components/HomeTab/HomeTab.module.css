@@ -13,7 +13,6 @@
 @media screen and (min-width: 1280px) {
   .tableWrapper {
     padding-top: 46px;
-    padding-left: 30px;
     max-height: 80vh;
     overflow-y: scroll;
   }
@@ -98,7 +97,7 @@
 }
 .th {
   text-align: start;
-  padding: 5px 27px;
+  padding: 5px 24px;
   background: #fff;
   border-color: transparent;
 }
