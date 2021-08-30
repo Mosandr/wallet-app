@@ -130,6 +130,7 @@
     background: #4a56e2;
     height: 134px;
     width: 348px;
+    margin-top: -2px;
     background-image: url('../../images/blue_hills.svg');
     border-radius: 0px 0px 30px 30px;
   }
