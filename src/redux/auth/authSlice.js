@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
+  token: null,
+  isAuthenticated: false,
   name: '',
   email: '',
-  isAuthenticated: false,
-  token: null,
-  isLoading: false,
-  error: '',
   totalBalance: null,
+  error: '',
+  isLoading: false,
 };
 
 const { reducer, actions } = createSlice({
@@ -33,8 +33,9 @@ const { reducer, actions } = createSlice({
     onLogoutSuccess: state => {
       state.token = null;
       state.isAuthenticated = false;
-      state.email = '';
       state.name = '';
+      state.email = '';
+      state.totalBalance = null;
       state.isLoading = false;
     },
     onLogoutError: (state, { payload }) => {
@@ -42,6 +43,7 @@ const { reducer, actions } = createSlice({
       state.isAuthenticated = false;
       state.email = '';
       state.name = '';
+      state.totalBalance = null;
       state.error = 'LogoutError \n' + payload;
     },
     onRegisterRequest: state => {
@@ -51,8 +53,9 @@ const { reducer, actions } = createSlice({
     onRegisterSuccess: (state, { payload }) => {
       state.token = payload.data.user.token;
       state.isAuthenticated = true;
-      state.email = payload.data.user.email;
       state.name = payload.data.user.name;
+      state.email = payload.data.user.email;
+      state.totalBalance = 0;
       state.error = '';
       state.isLoading = false;
     },
