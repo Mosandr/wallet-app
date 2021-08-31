@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { error as errorNotify } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
+import { setInitTransactions } from '../transactions/transactionsSlice';
 import '@pnotify/core/dist/BrightTheme.css';
 import {
   onLoginRequest,
@@ -70,6 +71,7 @@ const logOut = () => async dispatch => {
     await axios.post('/users/logout');
     token.unset();
     dispatch(onLogoutSuccess());
+    dispatch(setInitTransactions());
   } catch (error) {
     dispatch(onLogoutError(error.message));
     errorNotify({
