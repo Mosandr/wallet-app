@@ -1,15 +1,8 @@
 import styles from './Currency.module.css';
-// import { useMediaQuery } from 'react-responsive';
 import { useEffect, useState } from 'react';
-// import { useState } from 'react';
-import waveSvg from '../../images/symbol-defs.svg';
+import Loader from '../Loader/Loader';
 
 function Currency() {
-  // const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
-  // const isTabletOrDesktop = useMediaQuery({
-  //   query: '(min-width: 768px)',
-  // });
-
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [currencie, setCurrencie] = useState([]);
@@ -33,7 +26,7 @@ function Currency() {
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
-    return <div>Loading...</div>;
+    return <Loader type="Circles" />;
   } else {
     return (
       <>

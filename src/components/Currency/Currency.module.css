@@ -2,7 +2,7 @@
 /* #4a56e2 */
 @media screen and (max-width: 767px) {
   .table_container {
-    /* margin: 0 auto; */
+    margin: 0 auto;
     min-width: 280px;
     height: 174px;
     margin-top: 33px;

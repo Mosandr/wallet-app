@@ -17,16 +17,27 @@ import transactionsOperations from '../../redux/transactions/transactionsOperati
 function DiagramTab() {
   const dispatch = useDispatch();
   const transactions = useSelector(selectors.getAllTransactions);
+  const monthFilter = useSelector(selectors.getMonthFilter);
+  const yearFilter = useSelector(selectors.getYearFilter);
+
+  const currentMonth = (new Date().getMonth() + 1).toString().padStart(2, '0');
+  const currentYear = new Date().getFullYear().toString();
 
   useEffect(() => {
     if (transactions.length === 0) {
       dispatch(transactionsOperations.getTransactions());
     }
+
+    if (monthFilter !== currentMonth) {
+      dispatch(monthChange(currentMonth));
+    }
+
+    if (yearFilter !== currentYear) {
+      dispatch(yearChange(currentYear));
+    }
   }, [dispatch]);
 
   const transactionsData = useSelector(selectors.getTransactionsStatistic);
-  const monthFilter = useSelector(selectors.getMonthFilter);
-  const yearFilter = useSelector(selectors.getYearFilter);
 
   const onMonthSelect = e => {
     dispatch(monthChange(e.value));
@@ -52,8 +63,8 @@ function DiagramTab() {
   ];
 
   const total = transactionsData.totalProfit - transactionsData.totalLoose;
-  const selectedMonth = months.filter(({ value }) => value === monthFilter);
-  const selectedYear = { value: yearFilter, label: yearFilter };
+  const selectedMonth = months.filter(({ value }) => value === currentMonth);
+  const selectedYear = { value: currentYear, label: currentYear };
 
   const strBalance = sumToString(total, '₴ ');
 
