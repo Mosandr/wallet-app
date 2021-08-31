@@ -4,7 +4,7 @@ import numberToStringCurrency from '../../helpers/numberToStringCurrency';
 import styles from './Balance.module.css';
 
 function Balance() {
-  const balance = useSelector(authSelectors.getTotalBalance).toFixed(2);
+  const balance = useSelector(authSelectors.getTotalBalance);
   return (
     <div className={styles.balance_container}>
       <p className={styles.balance_title}>Ваш баланс</p>

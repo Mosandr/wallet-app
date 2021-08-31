@@ -53,7 +53,6 @@ function RegistrationForm() {
   const dispatch = useDispatch();
   const onRegisterSubmit = values => {
     const { email, password, userName: name } = values;
-    console.log('Register Formik submit!');
     dispatch(authOps.register({ email, password, name }));
   };
 

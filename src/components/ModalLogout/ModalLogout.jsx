@@ -9,8 +9,8 @@ const ModalLogout = ({ onClose }) => {
     dispatch(authOps.logOut());
   };
   const buttonsSettings = {
-    btn_1_text: 'Logout',
-    btn_2_text: 'Return',
+    btn_1_text: 'Выйти',
+    btn_2_text: 'Отмена',
     btn_1_callback: onLogout,
     btn_2_callback: onClose,
   };
