@@ -41,10 +41,12 @@ function ModalAddTransactions({ onClose }) {
     });
   };
 
-  const beforeYesterday = moment().subtract(1, 'day');
-  const validDate = current => {
-    return current.isAfter(beforeYesterday);
-  };
+  const validDate = current => current.isBefore();
+
+  // const beforeYesterday = moment().subtract(1, 'day');
+  // const validDate = current => {
+  //   return current.isAfter(beforeYesterday);
+  // };
 
   const initialValue = {
     typeToggle: false,
