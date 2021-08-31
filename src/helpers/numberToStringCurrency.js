@@ -7,12 +7,13 @@
 //   return currency + intPart + floatString;
 // };
 
-const numberToStringCurrency = (sum) => {
-  const [intPart, floatPart] = sum
+const numberToStringCurrency = sum => {
+  const [intPart, floatPart] = Number(sum)
+    .toFixed(2)
     .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, " ")
-    .split(".");
-  const floatString = floatPart ? "." + floatPart.padEnd(2, "0") : ".00";
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+    .split('.');
+  const floatString = floatPart ? '.' + floatPart.padEnd(2, '0') : '.00';
   return intPart + floatString;
 };
 
