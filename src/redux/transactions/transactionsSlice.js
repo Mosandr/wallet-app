@@ -44,6 +44,11 @@ const { reducer, actions } = createSlice({
     yearListChange: (state, { payload }) => {
       state.yearList = payload;
     },
+    setInitTransactions: (state, _) => {
+      state.list = [];
+    },
+
+
   },
 });
 
@@ -57,5 +62,6 @@ export const {
   monthChange,
   yearChange,
   yearListChange,
+  setInitTransactions
 } = actions;
 export default reducer;

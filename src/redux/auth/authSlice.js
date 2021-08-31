@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-
 const initialState = {
   token: null,
   isAuthenticated: false,
@@ -37,6 +36,7 @@ const { reducer, actions } = createSlice({
       state.email = '';
       state.totalBalance = null;
       state.isLoading = false;
+      state.totalBalance = 0;
     },
     onLogoutError: (state, { payload }) => {
       state.token = null;
