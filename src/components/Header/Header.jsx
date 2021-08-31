@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import userSelectors from '../../redux/auth/authSelectors';
-import logoSmall from '../../images/logo_small.svg';
+import LogoSmall from '../../images/logo_small.svg';
 import styles from './Header.module.css';
 import Container from '../Container/Container';
 
@@ -14,7 +14,7 @@ function Header({ onLogout }) {
       <div className={styles.wrapper}>
         <div className={styles.img_thumb}>
           <NavLink exact to="/" activeClassName={styles.active_link}>
-            <img src={logoSmall} alt="logo" className={styles.logo} />
+            <img src={LogoSmall} alt="logo" className={styles.logo} />
           </NavLink>
         </div>
         <div className={styles.headerMenu}>
