@@ -1,0 +1,71 @@
+.authInputFieldWrap {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  width: 280px;
+  height: 34px;
+  margin-bottom: 40px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--text-border-inactive);
+}
+
+.authInputField {
+  width: 226px;
+  border: none;
+  outline: none;
+}
+
+.withProgressBar {
+  margin-bottom: 10px;
+}
+
+.authInputField:focus {
+  background-color: #fff;
+}
+
+.authInputField::placeholder {
+  color: var(--text-placeholder);
+}
+
+.email::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  height: 24px;
+  width: 24px;
+  background-image: url('../../icons/email.svg');
+}
+
+.lock::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  height: 24px;
+  width: 24px;
+  background-image: url('../../icons/lock.svg');
+}
+
+.account::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  height: 24px;
+  width: 24px;
+  background-image: url('../../icons/account.svg');
+}
+
+@media screen and (min-width: 768px) {
+  .authInputFieldWrap {
+    width: 410px;
+  }
+
+  .authInputField {
+    width: 350px;
+  }
+}

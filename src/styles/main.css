@@ -1,0 +1,73 @@
+@import url(../components/Selector/Date-Selector.css);
+@import url(../components/Selector/Type-Selector.css);
+
+:root {
+  --background-main: #e7eaf2;
+  --text-background-white: #ffffff;
+  --text-placeholder: #bdbdbd;
+  --text-border-black: #000000;
+  --text-border-inactive: #e0e0e0;
+  --text-border-icon-blue: #4a56e2;
+  --accent-color-ok: #24cca7;
+  --accent-color-alert: #ff6596;
+  --stroke-color: #e5f1ef;
+  --border-icon-gray: #e0e0e0;
+  --breakpoint-desktop: 1280px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-mobile: 320px;
+  --main-font: 'Roboto', sans-serif;
+  --secondary-font: 'Poppins', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  height: 100vh;
+  background-color: var(--background-main);
+  font-family: var(--main-font);
+  font-style: normal;
+  line-height: 1.5;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    min-height: 1024px;
+    background-image: url('../images/ellipse_1.svg'),
+      url('../images/ellipse_2_small.svg');
+    background-position: left bottom, right top;
+    background-repeat: no-repeat;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  body {
+    min-height: 720px;
+    height: 100vh;
+    background-image: url('../images/ellipse_1.svg'),
+      url('../images/ellipse_2.svg');
+    background-position: left bottom, right top;
+    background-repeat: no-repeat;
+  }
+}

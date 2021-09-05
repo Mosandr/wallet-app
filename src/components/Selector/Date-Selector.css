@@ -1,0 +1,71 @@
+.react-select-container {
+}
+
+.react-select-container > .react-select__control {
+  border: 1px solid #000000;
+  border-radius: 30px;
+  height: 50px;
+}
+.react-select-container > .react-select__control--is-focused {
+  box-shadow: 0 0 0 1px #4a56e2;
+  border: 1px solid transparent;
+}
+.react-select__control > .react-select__value-container {
+  padding-left: 20px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+}
+.react-select__value-container > .react-select__single-value {
+  color: #000000;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.react-select__indicators {
+  padding-right: 20px;
+}
+.react-select__indicators > .react-select__indicator-separator {
+  display: none;
+}
+
+.react-select__dropdown-indicator > svg {
+  fill: transparent;
+}
+
+.react-select__dropdown-indicator {
+  position: relative;
+}
+
+.react-select__dropdown-indicator::before {
+  content: url('../../icons/select.svg');
+  position: absolute;
+}
+
+/* .react-select__control--menu-is-open .react-select__dropdown-indicator::before {
+  transform: rotate(90deg);
+} */
+
+.react-select-container > .react-select__menu {
+  border-radius: 30px;
+  border: 1px solid #4a56e2;
+}
+
+.react-select__menu > .react-select__menu-list {
+  border-radius: 30px;
+}
+
+.react-select__menu > .react-select__menu-list::-webkit-scrollbar {
+  width: 0px;
+}
+
+.react-select__menu-list > .react-select__option {
+  padding-left: 20px;
+}
+
+.react-select__menu-list > .react-select__option--is-selected {
+  background: #4a56e2;
+}

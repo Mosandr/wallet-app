@@ -1,0 +1,54 @@
+@media screen and (min-width: 768px) {
+  .loginView {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+  }
+
+  .loginViewHead {
+    width: 540px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 50px;
+  }
+
+  .loginViewTitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    line-height: 45px;
+  }
+
+  .loginViewImage {
+    width: 250px;
+    height: 260px;
+    margin-right: 40px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .loginView {
+    display: flex;
+    height: 100vh;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 136px;
+  }
+
+  .loginViewHead {
+    width: 435px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 144px;
+  }
+
+  .loginViewImage {
+    width: 435px;
+    height: 420px;
+    margin-right: 0px;
+    margin-bottom: 30px;
+  }
+} ;

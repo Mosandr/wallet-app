@@ -1,0 +1,195 @@
+.tableWrapper {
+  padding-top: 40px;
+}
+.tableWrapper::-webkit-scrollbar {
+  display: none;
+}
+/* @media screen and (min-width: 768px) {
+  .tableWrapper {
+    max-height: 80vh;
+    overflow-y: scroll;
+  }
+} */
+@media screen and (min-width: 1280px) {
+  .tableWrapper {
+    padding-top: 46px;
+    max-height: 80vh;
+    overflow-y: scroll;
+  }
+}
+.table {
+  border-collapse: collapse;
+  width: 700px;
+}
+@media screen and (min-width: 768px) {
+  .table {
+    margin-left: auto;
+    margin-right: auto;
+    width: 688px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .table {
+    width: 700px;
+  }
+}
+
+.tableHeader {
+  height: 60px;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.table .th:first-child {
+  border-radius: 30px 0 0 30px;
+}
+
+.table .th:last-child {
+  border-radius: 0 30px 30px 0;
+}
+
+.td {
+  height: 55px;
+  padding: 5px 27px;
+}
+.td:nth-child(1) {
+  padding-left: 20px;
+  padding-right: 5px;
+  text-align: start;
+}
+.td:nth-child(2) {
+  text-align: center;
+}
+.td:nth-child(3) {
+  padding-right: 5px;
+}
+.td:nth-child(4) {
+  padding-right: 10px;
+}
+
+.td:nth-child(5) {
+  text-align: right;
+  padding-left: 5px;
+}
+.td:nth-child(6) {
+  padding-right: 20px;
+  padding-left: 5px;
+  text-align: right;
+}
+
+@media screen and (min-width: 1280px) {
+  .td {
+    height: 55px;
+    padding: 5px 30px;
+  }
+}
+
+.tr {
+  font-weight: 400;
+  font-size: 16px;
+  border-bottom: 1px solid #dcdcdf;
+  box-shadow: 0px 2px 0px rgba(255, 255, 255, 0.6);
+}
+.thead {
+  background: #fff;
+  border: none;
+  color: #000;
+}
+.th {
+  text-align: start;
+  padding: 5px 24px;
+  background: #fff;
+  border-color: transparent;
+}
+
+@media screen and (min-width: 1280px) {
+  .th {
+    padding: 5px 30px;
+  }
+}
+
+.th:first-child {
+  padding-left: 20px;
+}
+
+.th:nth-child(5) {
+  text-align: end;
+}
+.th:last-child {
+  text-align: end;
+  padding-right: 20px;
+}
+
+/* mobile */
+.transactionList {
+  margin: 0 auto;
+  max-width: 480px;
+  padding-top: 30px;
+  list-style: none;
+}
+.transactionItem {
+  margin: 0 auto;
+  border-radius: 5px;
+  background-color: #fff;
+}
+@media screen and (min-width: 320px) {
+  .transactionItem {
+    min-width: 280px;
+  }
+}
+.transactionItem:not(:last-child) {
+  margin-bottom: 10px;
+}
+.transactionParamsList {
+  list-style: none;
+}
+.transactionParamsItem {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 20px;
+}
+.transactionParamsItem:not(:last-child) {
+  border-bottom: 1px solid #dcdcdf;
+}
+.paramName {
+  margin-right: 5px;
+  font-weight: 700;
+  font-size: 18px;
+}
+.paramValue {
+  font-weight: 400;
+  font-size: 16px;
+  text-align: right;
+}
+
+.addButton {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 20px;
+  bottom: 30px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #24cca7;
+  box-shadow: 0px 6px 15px rgba(36, 204, 167, 0.5);
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .addButton {
+    right: 40px;
+    bottom: 40px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .addButton {
+    right: 85px;
+    bottom: 40px;
+  }
+}

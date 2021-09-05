@@ -1,0 +1,202 @@
+/* #6e78e8 */
+/* #4a56e2 */
+@media screen and (max-width: 767px) {
+  .table_container {
+    margin: 0 auto;
+    min-width: 280px;
+    height: 174px;
+    margin-top: 33px;
+    border-collapse: collapse;
+  }
+
+  .table_head {
+    display: block;
+    background: #6e78e8;
+    height: 50;
+    padding-top: 11px;
+    padding-bottom: 12px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+  }
+
+  .currency_title {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .currency {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 27px;
+  }
+
+  .tbody {
+    display: block;
+    background: #4a56e2;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 13px;
+    padding-bottom: 22px;
+    background-image: url('../../images/blue_hills.svg');
+    background-size: cover;
+    border-radius: 0px 0px 30px 30px;
+  }
+
+  .currency_row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .currency_row:last-child {
+    margin-bottom: 0;
+  }
+
+  .currency_name {
+    color: #ffffff;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .table_container {
+    width: 334px;
+    height: 174px;
+    margin-top: 30px;
+    margin-left: 20px;
+    border-collapse: collapse;
+  }
+
+  .table_head {
+    display: block;
+    background: #6e78e8;
+    height: 50;
+    padding-top: 11px;
+    padding-bottom: 12px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+  }
+
+  .currency_title {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .currency {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 27px;
+  }
+
+  .tbody {
+    display: block;
+    background: #4a56e2;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 13px;
+    padding-bottom: 22px;
+    background-image: url('../../images/blue_hills.svg');
+    background-size: cover;
+    border-radius: 0px 0px 30px 30px;
+  }
+
+  .currency_row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .currency_row:last-child {
+    margin-bottom: 0;
+  }
+
+  .currency_name {
+    color: #ffffff;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .background {
+    background: #4a56e2;
+    height: 134px;
+    width: 348px;
+    margin-top: -2px;
+    background-image: url('../../images/blue_hills.svg');
+    border-radius: 0px 0px 30px 30px;
+  }
+
+  .table_container {
+    width: 348px;
+    height: 213px;
+    margin-top: 30px;
+    border-collapse: collapse;
+  }
+
+  .table_head {
+    display: block;
+    background: #6e78e8;
+    height: 60;
+    padding-top: 17px;
+    padding-bottom: 16px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+  }
+
+  .currency_title {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .currency {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 27px;
+  }
+
+  .tbody {
+    display: block;
+    background: #4a56e2;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 20px;
+    padding-bottom: 15px;
+  }
+
+  /* .tbody:last-child {
+    background-image: url('../../images/blue_hills.svg');
+    border-radius: 0px 0px 30px 30px;
+    padding-bottom: 134px;
+    width: 348px;
+    background-size: cover;
+  } */
+  .currency_row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 23px;
+  }
+
+  .currency_row:last-child {
+    margin-bottom: 0;
+  }
+
+  .currency_name {
+    color: #ffffff;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
